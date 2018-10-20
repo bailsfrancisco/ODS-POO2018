@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="resources/js/script.js"ghj></script>
+        <script src="resources/js/script.js"></script>
         <title>Login</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
