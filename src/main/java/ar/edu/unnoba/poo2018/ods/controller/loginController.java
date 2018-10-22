@@ -81,6 +81,12 @@ public class loginController extends HttpServlet {
             response.sendRedirect("welcome.jsp");
         }else{
             
+            //response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Datos incorrectos");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.sendRedirect("index.jsp");
+            
+            
+            
 //            En caso contrario, establecer el status code del response con el estado
 //HttpServletResponse.SC_UNAUTHORIZED y mostrar nuevamente la vista
 //del index con el formulario de login mostrando el mensaje “Usuario y/o

@@ -18,7 +18,7 @@ function validateLogin(){
         }   
     }
     var password = document.forms["form"]["password"].value;
-    regex = /^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/;
+    regex = /^(?=.*\d)(?=.*[a-záéíóúüñ])/;
     if(password === ""){
         alert("La password es obligatoria!");
         return false;
@@ -29,5 +29,14 @@ function validateLogin(){
         }
     }
     
-    //Falta validar si el email es valido y que la contraseña tenga al menos 8 caracteres
+    // Valida:
+    //   .email:    si es valido.
+    //   .password: si tiene 8 caracteres minimo + si tiene al menos 1 letra.     
+    
+    
+    // Para verificas lo mismo de password + 1 mayuscula obligatoria:
+    //   .regex = /^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/;
+    
+    
+   
 }
