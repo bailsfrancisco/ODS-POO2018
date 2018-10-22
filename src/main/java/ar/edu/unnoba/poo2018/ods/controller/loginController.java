@@ -83,7 +83,7 @@ public class loginController extends HttpServlet {
             
             //response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Datos incorrectos");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.sendRedirect("welcome.jsp");
+            response.sendRedirect("index.jsp");
             
             
             
