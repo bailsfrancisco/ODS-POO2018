@@ -24,7 +24,5 @@
                 <input type="submit" value="Ingresar"/>
 
             </form> </h1>
-
-
     </body>
 </html>
