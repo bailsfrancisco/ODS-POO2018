@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(
-        name = "loginController" , urlPatterns = {"/loginController"}
+        name = "loginController", urlPatterns = {"/loginController"}
 )
 
 /**
@@ -73,18 +73,20 @@ public class loginController extends HttpServlet {
         String password = request.getParameter("password");
 
         Usuario user = new Usuario(email, password);
-        if(user.login()){
-            //sesion
-            //redirigir al welcome
-            request.getSession().setAttribute("email", user);
-            request.getSession().setAttribute("password",user);
-            response.sendRedirect("welcome.jsp");
-        }else{
+        if (user.login()) {
+            //Se agrega un atributo user a sesion y va a tenes al user de la sentencia 75, lugo te redirige al welcomeController
+            request.getSession().setAttribute("user", user);
+            response.sendRedirect("welcomeController");
             
-//            En caso contrario, establecer el status code del response con el estado
-//HttpServletResponse.SC_UNAUTHORIZED y mostrar nuevamente la vista
-//del index con el formulario de login mostrando el mensaje “Usuario y/o
-//contraseña incorrecta”.
+
+        } else {
+
+            //response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Datos incorrectos");
+            //Si no fue autorizado te redirige al index.jsp con codigo 401
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+          //  response.sendRedirect("index.jsp");
+
 
         }
     }

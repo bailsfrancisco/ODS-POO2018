@@ -52,18 +52,18 @@ public class welcomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        
+        //processRequest(request, response);
+        if(request.getSession().getAttribute("user") != null){
+            //Si hay una sesion te redirige al welcome.jsp
+            request.getRequestDispatcher("/WEB-INF/welcome.jsp").forward(request, response);
+        }else{
+            //Si paso el timeout del web.xml te redirige al logiin con status 408
+            response.setStatus(HttpServletResponse.SC_REQUEST_TIMEOUT);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

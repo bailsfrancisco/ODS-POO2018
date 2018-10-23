@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import= "ar.edu.unnoba.poo2018.ods.model.*"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,8 @@
         <title>Bienvenido</title>
     </head>
     <body>
-        
+
+        <h1> Hola <%= ((Usuario) session.getAttribute("user")).getEmail()%>!</h1>
+
     </body>
 </html>
