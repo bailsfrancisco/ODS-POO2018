@@ -17,7 +17,7 @@
     <body>
 
         <h1><center><h2><u>Iniciar sesión</u></h2></center>
-            <form action="/ODS-POO2018/loginController" method="post" name="form" onsubmit="return validateLogin();">
+            <form action="/TP3-PULL-ANDA/loginController" method="post" name="form" onsubmit="return validateLogin();">
                 <label>E-mail</label>
                 <input type="text" name="email" placeholder="Ingresar e-mail"/> <br>
                 <label>Password</label>
