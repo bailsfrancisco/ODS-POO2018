@@ -15,6 +15,7 @@
         <link href="resources/css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+
         <h1><center><h2><u>Iniciar sesión</u></h2></center>
             <form action="/ODS-POO2018/loginController" method="post" name="form" onsubmit="return validateLogin();">
                 <label>E-mail</label>
@@ -24,5 +25,22 @@
                 <input type="submit" value="Ingresar"/>
 
             </form> </h1>
+
+        <%
+            if (response.getStatus() == 401) {
+        %>
+
+                <h2> Usuario y/o contraseña incorrecta </h2>
+
+        <%
+            } if (response.getStatus() == 408) {
+        %>
+                 <h2> Sesion expirada </h2>
+
+        <%
+            }
+        %>  
+
     </body>
 </html>
+
