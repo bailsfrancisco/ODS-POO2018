@@ -9,6 +9,6 @@ package ar.edu.unnoba.ods.poo2018.dao;
  *
  * @author bailsfrancisco
  */
-public class ActividadSimpleDAO extends ActividadDAO {
+public class ActividadCompuestaDAO extends ActividadDAO{
     
 }

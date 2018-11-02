@@ -5,10 +5,18 @@
  */
 package ar.edu.unnoba.ods.poo2018.dao;
 
+import ar.edu.unnoba.poo2018.ods.model.Impacto;
+import javax.ejb.Stateless;
+
 /**
  *
  * @author bailsfrancisco
  */
-public class ActividadSimpleDAO extends ActividadDAO {
+@Stateless
+public class ImpactoDAO extends AbstractDAO<Impacto>{
+    
+    public ImpactoDAO() {
+        super(Impacto.class);
+    }
     
 }
