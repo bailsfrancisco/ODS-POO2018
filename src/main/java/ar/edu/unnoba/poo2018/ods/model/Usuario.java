@@ -1,11 +1,17 @@
 package ar.edu.unnoba.poo2018.ods.model;
 
-public class Usuario {
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "usuario")
+public class Usuario extends AbstractEntity{
 
     private String email;
     private String password;
     private Boolean admin;
 
+    
     public Usuario(String email, String password) {
         this.email = email;
         this.password = password;
