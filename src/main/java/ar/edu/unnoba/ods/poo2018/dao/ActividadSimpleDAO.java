@@ -5,10 +5,18 @@
  */
 package ar.edu.unnoba.ods.poo2018.dao;
 
+import ar.edu.unnoba.poo2018.ods.model.ActividadSimple;
+import javax.ejb.Stateless;
+
 /**
  *
  * @author bailsfrancisco
  */
-public class ActividadSimpleDAO extends ActividadDAO {
+@Stateless
+public class ActividadSimpleDAO extends AbstractDAO<ActividadSimple> {
+    
+    public ActividadSimpleDAO() {
+        super(ActividadSimple.class);
+    }
     
 }
