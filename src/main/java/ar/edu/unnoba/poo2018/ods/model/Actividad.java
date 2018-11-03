@@ -2,6 +2,7 @@ package ar.edu.unnoba.poo2018.ods.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -10,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -36,8 +36,8 @@ public abstract class Actividad extends AbstractEntity {
     private LineaEstrategica lineaEstrategica;
     
     @JoinColumn(name = "responsables_id")
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividad")
-    private ArrayList<Usuario> responsables;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Usuario> responsables;
 
     public Actividad(String nombreActividad, Date fechaInicio, Date fechaFin, String resolucion, String expediente, Ambito ambito, Convocatoria convocatoria, LineaEstrategica lineaEstrategica, ArrayList<Usuario> responsables) {
         this.nombreActividad = nombreActividad;
@@ -115,7 +115,7 @@ public abstract class Actividad extends AbstractEntity {
         this.lineaEstrategica = lineaEstrategica;
     }
 
-    public ArrayList<Usuario> getResponsables() {
+    public List<Usuario> getResponsables() {
         return responsables;
     }
 
