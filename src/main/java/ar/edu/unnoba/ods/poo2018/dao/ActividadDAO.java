@@ -18,5 +18,4 @@ public class ActividadDAO extends AbstractDAO<Actividad>{
     public ActividadDAO() {
         super(Actividad.class);
     }
-    
 }

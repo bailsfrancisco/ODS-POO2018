@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -23,7 +24,9 @@ import javax.persistence.Table;
 public abstract class Actividad extends AbstractEntity {
     
     private String nombreActividad;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaInicio;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaFin;
     private String resolucion;
     private String expediente;
