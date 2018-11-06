@@ -5,16 +5,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "actividad_simple")
+@DiscriminatorValue("actividad_simple")
 public class ActividadSimple extends Actividad implements Serializable {
 
-    @JoinColumn(name = "impactos_id")
+    @JoinColumn(name = "actividad_simple_id")
     @OneToMany(cascade = CascadeType.ALL)
     private List<Impacto> impactos;
 
