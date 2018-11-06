@@ -39,6 +39,9 @@ public abstract class Actividad extends AbstractEntity {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Usuario> responsables;
 
+    public Actividad() {
+    }
+
     public Actividad(String nombreActividad, Date fechaInicio, Date fechaFin, String resolucion, String expediente, Ambito ambito, Convocatoria convocatoria, LineaEstrategica lineaEstrategica, ArrayList<Usuario> responsables) {
         this.nombreActividad = nombreActividad;
         this.fechaInicio = fechaInicio;

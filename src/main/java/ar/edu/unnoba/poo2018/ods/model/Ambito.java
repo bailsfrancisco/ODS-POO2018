@@ -10,6 +10,9 @@ public class Ambito extends AbstractEntity{
     private String nombre;
     private String descripcion;
 
+    public Ambito() {
+    }
+
     public Ambito(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;

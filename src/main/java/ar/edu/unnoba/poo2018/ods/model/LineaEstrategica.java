@@ -10,6 +10,9 @@ public class LineaEstrategica extends AbstractEntity{
     private String nombre;
     private String descripcion;
 
+    public LineaEstrategica() {
+    }
+
     public LineaEstrategica(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;

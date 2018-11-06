@@ -10,6 +10,9 @@ public class Convocatoria extends AbstractEntity{
     private String nombre;
     private String descripcion;
 
+    public Convocatoria() {
+    }
+
     public Convocatoria(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;

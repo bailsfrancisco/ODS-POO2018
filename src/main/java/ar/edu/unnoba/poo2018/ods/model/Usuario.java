@@ -11,6 +11,9 @@ public class Usuario extends AbstractEntity{
     private String password;
     private Boolean admin;
 
+    public Usuario() {
+    }
+
     
     public Usuario(String email, String password) {
         this.email = email;

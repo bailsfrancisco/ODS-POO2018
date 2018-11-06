@@ -9,6 +9,9 @@ public class ODS extends AbstractEntity{
     
     private String nombre;
 
+    public ODS() {
+    }
+
     public ODS(String nombre) {
         this.nombre = nombre;
     }

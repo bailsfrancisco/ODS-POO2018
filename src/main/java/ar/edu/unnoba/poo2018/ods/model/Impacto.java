@@ -11,9 +11,12 @@ public class Impacto extends AbstractEntity{
     
     private Integer peso;
     
-    @JoinColumn(name = "objetivo_id")
+    @JoinColumn(name = "objetivo_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private ODS objetivo;
+
+    public Impacto() {
+    }
 
     public Impacto(Integer peso, ODS objetivo) {
         this.peso = peso;

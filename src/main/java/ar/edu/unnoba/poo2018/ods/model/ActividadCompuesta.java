@@ -17,6 +17,9 @@ public class ActividadCompuesta extends Actividad implements Serializable {
     @JoinColumn(name = "actividades_id")
     @OneToMany(cascade = CascadeType.ALL)
     private List<Actividad> actividades;    
+
+    public ActividadCompuesta() {
+    }
     
     
     public ActividadCompuesta(String nombreActividad, Date fechaInicio, Date fechaFin, String resolucion, String expediente, Ambito ambito, Convocatoria convocatoria, LineaEstrategica lineaEstrategica, ArrayList<Usuario> responsables) {

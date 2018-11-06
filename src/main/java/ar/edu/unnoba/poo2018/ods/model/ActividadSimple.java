@@ -18,6 +18,9 @@ public class ActividadSimple extends Actividad implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Impacto> impactos;
 
+    public ActividadSimple() {
+    }
+
     public ActividadSimple(String nombreActividad, Date fechaInicio, Date fechaFin, String resolucion, String expediente, Ambito ambito, Convocatoria convocatoria, LineaEstrategica lineaEstrategica, ArrayList<Usuario> responsables) {
         super(nombreActividad, fechaInicio, fechaFin, resolucion, expediente, ambito, convocatoria, lineaEstrategica, responsables);
     }
