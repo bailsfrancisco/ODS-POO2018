@@ -55,7 +55,7 @@ public class SessionBacking implements Serializable {
         if (usuario == null) {
             //mensaje de error
             FacesContext context = FacesContext.getCurrentInstance();
-            FacesMessage message = new FacesMessage("Datos incorrectos.");
+            FacesMessage message = new FacesMessage("Datos incorrectos");
             context.addMessage(null, message);
             return null;
         }
