@@ -3,20 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ar.edu.unnoba.ods.poo2018.dao;
-
-import ar.edu.unnoba.poo2018.ods.model.ODS;
-import javax.ejb.Stateless;
+package ar.edu.unnoba.poo2018.ods.controller;
 
 /**
  *
  * @author bailsfrancisco
  */
-@Stateless
-public class ODSDAO extends AbstractDAO<ODS>{
-    
-    public ODSDAO() {
-        super(ODS.class);
-    }
+public class AmbitoBacking {
     
 }

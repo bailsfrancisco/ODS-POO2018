@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ar.edu.unnoba.ods.poo2018.dao;
+package ar.edu.unnoba.ods.poo2018.ods.dao;
 
 import javax.ejb.EJBException;
 import javax.persistence.EntityManager;

@@ -1,10 +1,16 @@
 package ar.edu.unnoba.poo2018.ods.model;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
+/*@NamedQueries({
+    @NamedQuery(name = "user.findbyEmailAndPassword",
+            query = "Select u From User u where u.email = :email and u.password = :password")
+})*/
 public class Usuario extends AbstractEntity{
 
     private String email;

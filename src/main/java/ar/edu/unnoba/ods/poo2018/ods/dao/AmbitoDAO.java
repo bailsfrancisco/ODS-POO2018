@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ar.edu.unnoba.ods.poo2018.dao;
+package ar.edu.unnoba.ods.poo2018.ods.dao;
 
-import ar.edu.unnoba.poo2018.ods.model.LineaEstrategica;
+import ar.edu.unnoba.poo2018.ods.model.Ambito;
 import javax.ejb.Stateless;
 
 /**
@@ -13,10 +13,10 @@ import javax.ejb.Stateless;
  * @author bailsfrancisco
  */
 @Stateless
-public class LineaEstrategicaDAO extends AbstractDAO<LineaEstrategica>{
+public class AmbitoDAO extends AbstractDAO<Ambito>{
     
-    public LineaEstrategicaDAO() {
-        super(LineaEstrategica.class);
+    public AmbitoDAO() {
+        super(Ambito.class);
     }
     
 }

@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+<web-app version="3.1"
+         xmlns:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
     <servlet>
-        <servlet-name>loginController</servlet-name>
-        <servlet-class>ar.edu.unnoba.poo2018.ods.controller.loginController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>welcomeController</servlet-name>
-        <servlet-class>ar.edu.unnoba.poo2018.ods.controller.welcomeController</servlet-class>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>loginController</servlet-name>
-        <url-pattern>/loginController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>welcomeController</servlet-name>
-        <url-pattern>/welcomeController</url-pattern>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>index.xhtml</welcome-file>
+    </welcome-file-list>
 </web-app>
