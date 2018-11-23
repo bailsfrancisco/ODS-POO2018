@@ -8,8 +8,8 @@
     </h:head>
  
     <h:body>
-        <h:form>
-            <p:outputLabel value = "#{i18n['labelBienvenido']}" #{sessionBacking.getUsuario().getEmail()} ></p:outputLabel>
+        <h:form> value = "#{i18n['labelBienvenido']}" #{sessionBacking.getUsuario().getEmail()} 
+            value = "#{i18n['labelBienvenido']}" #{sessionBacking.getUsuario().getEmail()}
             <p:commandLink action="#{sessionBacking.logout()}"> "#{i18n['linkSalir']}" </p:commandLink>
         </h:form>
     </h:body>

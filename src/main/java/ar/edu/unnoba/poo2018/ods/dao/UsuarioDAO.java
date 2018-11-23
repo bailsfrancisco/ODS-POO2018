@@ -17,7 +17,7 @@ public class UsuarioDAO extends AbstractDAO<Usuario>{
     }
     
     public Usuario login(String email, String password){
-        Query query = em.createNamedQuery("user.findbyEmailAndPassword");
+        Query query = em.createNamedQuery("usuario.findbyEmailAndPassword");
         query.setParameter("email", email);
         query.setParameter("password", password);
         Usuario usuario = null;
