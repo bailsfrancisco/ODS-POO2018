@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ar.edu.unnoba.ods.poo2018.ods.dao;
+package ar.edu.unnoba.poo2018.ods.dao;
 
-import ar.edu.unnoba.poo2018.ods.model.Actividad;
+import ar.edu.unnoba.poo2018.ods.model.ODS;
 import javax.ejb.Stateless;
 
 /**
@@ -13,9 +13,10 @@ import javax.ejb.Stateless;
  * @author bailsfrancisco
  */
 @Stateless
-public class ActividadDAO extends AbstractDAO<Actividad>{
+public class ODSDAO extends AbstractDAO<ODS>{
     
-    public ActividadDAO() {
-        super(Actividad.class);
+    public ODSDAO() {
+        super(ODS.class);
     }
+    
 }

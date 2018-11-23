@@ -5,7 +5,7 @@
  */
 package ar.edu.unnoba.poo2018.ods.controller;
 
-import ar.edu.unnoba.ods.poo2018.ods.dao.UsuarioDAO;
+import ar.edu.unnoba.poo2018.ods.dao.UsuarioDAO;
 import ar.edu.unnoba.poo2018.ods.model.Usuario;
 import java.io.Serializable;
 import javax.ejb.EJB;
