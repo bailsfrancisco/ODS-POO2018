@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ar.edu.unnoba.ods.poo2018.ods.dao;
+package ar.edu.unnoba.poo2018.ods.converter;
 
 import ar.edu.unnoba.poo2018.ods.model.Actividad;
-import javax.ejb.Stateless;
+import javax.faces.convert.FacesConverter;
 
 /**
  *
  * @author bailsfrancisco
  */
-@Stateless
-public class ActividadDAO extends AbstractDAO<Actividad>{
-    
-    public ActividadDAO() {
-        super(Actividad.class);
+@FacesConverter(forClass=Actividad.class)
+public class ActividadConverter extends AbstractConverter<Actividad> {
+
+    @Override
+    public String getDAOName() {
+        return "ActividadDAO";
     }
 }

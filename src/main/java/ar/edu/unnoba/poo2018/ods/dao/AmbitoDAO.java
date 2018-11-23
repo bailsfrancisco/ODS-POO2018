@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ar.edu.unnoba.ods.poo2018.ods.dao;
+package ar.edu.unnoba.poo2018.ods.dao;
 
-import ar.edu.unnoba.poo2018.ods.model.Impacto;
+import ar.edu.unnoba.poo2018.ods.model.Ambito;
 import javax.ejb.Stateless;
 
 /**
@@ -13,10 +13,10 @@ import javax.ejb.Stateless;
  * @author bailsfrancisco
  */
 @Stateless
-public class ImpactoDAO extends AbstractDAO<Impacto>{
+public class AmbitoDAO extends AbstractDAO<Ambito>{
     
-    public ImpactoDAO() {
-        super(Impacto.class);
+    public AmbitoDAO() {
+        super(Ambito.class);
     }
     
 }

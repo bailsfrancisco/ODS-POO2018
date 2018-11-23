@@ -5,10 +5,12 @@
  */
 package ar.edu.unnoba.poo2018.ods.controller;
 
+import java.io.Serializable;
+
 /**
  *
  * @author bailsfrancisco
  */
-public class ActividadCompuestaBacking {
+public class ActividadCompuestaBacking implements Serializable{
     
 }

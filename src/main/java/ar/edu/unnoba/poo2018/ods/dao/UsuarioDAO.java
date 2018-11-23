@@ -1,4 +1,4 @@
-package ar.edu.unnoba.ods.poo2018.ods.dao;
+package ar.edu.unnoba.poo2018.ods.dao;
 
 import ar.edu.unnoba.poo2018.ods.model.Usuario;
 import javax.ejb.Stateless;
