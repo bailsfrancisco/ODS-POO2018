@@ -1,0 +1,16 @@
+h1{
+    text-align: center;
+    margin: 130px 0 25px 0;
+}
+
+#principal{
+    width: 1024px;
+    margin: 0 auto;
+    
+}
+
+#cuadro{
+    margin: 200px auto;
+    width: 40%;
+    text-align: center;
+}
