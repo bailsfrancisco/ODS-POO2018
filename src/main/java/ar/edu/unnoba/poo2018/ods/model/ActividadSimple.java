@@ -8,11 +8,16 @@ import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @DiscriminatorValue("actividad_simple")
+@NamedQueries({
+    @NamedQuery(name = "actividadSimple.getAllActividadSimple",
+            query = "Select a From ActividadSimple a")
+})
 public class ActividadSimple extends Actividad implements Serializable {
 
     @JoinColumn(name = "actividad_simple_id")
