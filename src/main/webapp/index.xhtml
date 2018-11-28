@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title> Login </title>
+        <title>#{i18n['login']}</title>
     </h:head>
     <h:body style="text-align: center">
         <h:form>
@@ -15,7 +15,11 @@
                 <p:messages id="messages" />
                 <h:panelGrid columns="2" cellpadding="5">
                     <p:outputLabel value="#{i18n['labelEmail']}"></p:outputLabel>
-                    <p:inputText value="#{sessionBacking.email}" />
+                    <p:inputText id="email" value="#{sessionBacking.email}" required="true" validatorMessage="#{i18n['invalidEmail']}">
+                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                        <p:clientValidator />
+                        <p:message for="email"/>
+                    </p:inputText>
                     <p:outputLabel value="#{i18n['labelPassword']}"></p:outputLabel>
                     <p:password value="#{sessionBacking.password}"/>
                     <p:commandButton value="#{i18n['botonIngresar']}" action="#{sessionBacking.login()}" update="messages"/>
