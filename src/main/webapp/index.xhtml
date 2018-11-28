@@ -7,17 +7,24 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title> Login </title>
+        <title> #{i18n['login']}</title>
         <h:outputStylesheet library="css" name="style_index.css"/>
     </h:head>
     <h:body id="principal">
         <div id="cuadro">
             <h:form>
                 <p:panel id="panel" header="#{i18n['IngreseSusDatos']}"  style="margin-bottom:10px;">
-                    <p:messages id="messages" autoUpdate="true"/>
+                    <p:messages id="messages" autoUpdate="true"/> 
                     <h:panelGrid columns="2">
                         <p:outputLabel value="#{i18n['labelEmail']}"></p:outputLabel>
-                        <p:inputText value="#{sessionBacking.email}" />
+
+                        <p:inputText id="email" value="#{sessionBacking.email}" required="true" validatorMessage="#{i18n['invalidEmail']}">
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                            <p:clientValidator />
+                            <p:message for="email"/>
+                        </p:inputText>
+                        
+
                         <p:outputLabel value="#{i18n['labelPassword']}"></p:outputLabel>
                         <p:password value="#{sessionBacking.password}"/>
                         <h:column/>

@@ -8,11 +8,14 @@ package ar.edu.unnoba.poo2018.ods.controller;
 import ar.edu.unnoba.poo2018.ods.dao.UsuarioDAO;
 import ar.edu.unnoba.poo2018.ods.model.Usuario;
 import java.io.Serializable;
+import java.util.PropertyResourceBundle;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 @ManagedBean
 @SessionScoped
@@ -49,13 +52,22 @@ public class SessionBacking implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+   
+    
+    @Inject
+    private transient PropertyResourceBundle bundle;
+
+    @PostConstruct
+    public void init() {
+    }
 
     public String login() {
         usuario = usuarioDAO.login(email, password);
         if (usuario == null) {
             //mensaje de error
             FacesContext context = FacesContext.getCurrentInstance();
-            FacesMessage message = new FacesMessage("Datos incorrectos");
+            FacesMessage message = new FacesMessage(bundle.getString("userLoginInvalid"));
+            //FacesMessage message = new FacesMessage("Datos incorrectos");
             context.addMessage(null, message);
             return null;
         }
