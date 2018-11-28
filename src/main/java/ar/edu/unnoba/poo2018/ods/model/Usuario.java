@@ -26,9 +26,9 @@ public class Usuario extends AbstractEntity{
         this.password = password;
     }
     
-    public Boolean login(){
+    /*public Boolean login(){
         return(this.getEmail().equals("poo2018@unnoba.edu.ar") && this.getPassword().equals("unnoba2018!"));
-    }
+    }/*
 
     /**
      * @return the email
