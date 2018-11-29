@@ -55,7 +55,7 @@ public class SessionBacking implements Serializable {
    
     
     @Inject
-    private transient PropertyResourceBundle bundle;
+    private PropertyResourceBundle bundle;
 
     @PostConstruct
     public void init() {

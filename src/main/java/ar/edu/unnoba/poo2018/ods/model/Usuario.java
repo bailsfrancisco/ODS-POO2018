@@ -1,6 +1,8 @@
 package ar.edu.unnoba.poo2018.ods.model;
 
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -16,6 +18,10 @@ public class Usuario extends AbstractEntity{
     private String email;
     private String password;
     private Boolean admin;
+    private String descripcion;
+    
+    @ManyToMany(mappedBy = "responsables")
+    private List<Actividad> actividades;
 
     public Usuario() {
     }

@@ -14,9 +14,11 @@
             <default-locale>es</default-locale>
             <supported-locale>en</supported-locale>
         </locale-config>
+        
         <resource-bundle>
             <base-name>ar.edu.unnoba.poo2018.i18n</base-name>
             <var>i18n</var>
         </resource-bundle>
+        
     </application>
 </faces-config>

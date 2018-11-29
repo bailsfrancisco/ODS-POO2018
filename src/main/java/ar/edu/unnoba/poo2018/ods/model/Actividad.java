@@ -3,19 +3,20 @@ package ar.edu.unnoba.poo2018.ods.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 @Entity
+@Table (name = "actividades")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
     name = "tipo_actividad",
@@ -43,8 +44,12 @@ public abstract class Actividad extends AbstractEntity {
     @ManyToOne(optional = false)
     private LineaEstrategica lineaEstrategica;
     
-    @JoinColumn(name = "responsables_id")
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(
+            name = "actividades_usuarios",
+            joinColumns = @JoinColumn (name = "actividad_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    )
     private List<Usuario> responsables;
 
     public Actividad() {
