@@ -8,9 +8,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ods")
 @NamedQueries({
-    @NamedQuery(name = "ods.getAllODS",
-            query = "Select o From ODS o")
-})
+    @NamedQuery(name = "ods.allODS",
+            query = "Select o From ODS o"),
+    @NamedQuery(name = "ods.deleteODS",
+            query = "Delete From ODS O Where o.nombre = :nombre "),
+ })
 public class ODS extends AbstractEntity{
     
     private String nombre;

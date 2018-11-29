@@ -1,14 +1,11 @@
 package ar.edu.unnoba.poo2018.ods.dao;
 
 import ar.edu.unnoba.poo2018.ods.model.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-/**
- *
- * @author bailsfrancisco
- */
 @Stateless
 public class UsuarioDAO extends AbstractDAO<Usuario>{
     
