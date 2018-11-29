@@ -4,19 +4,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 @DiscriminatorValue("actividad_compuesta")
 public class ActividadCompuesta extends Actividad implements Serializable {
     
-    @JoinColumn(name = "actividad_id")
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(
+        name="actividadI_actividadC",joinColumns=@JoinColumn(name="actividadI_id", referencedColumnName="id"),inverseJoinColumns=@JoinColumn(name="actividadC_id", referencedColumnName="id"))
     private List<Actividad> actividades;    
 
     public ActividadCompuesta() {
