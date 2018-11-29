@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -42,8 +43,9 @@ public abstract class Actividad extends AbstractEntity {
     @ManyToOne(optional = false)
     private LineaEstrategica lineaEstrategica;
     
-    @JoinColumn(name = "responsables_id")
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(
+        name="actividad_responsable",joinColumns=@JoinColumn(name="actividad_id", referencedColumnName="id"),inverseJoinColumns=@JoinColumn(name="responsable_id", referencedColumnName="id"))
     private List<Usuario> responsables;
 
     public Actividad() {
