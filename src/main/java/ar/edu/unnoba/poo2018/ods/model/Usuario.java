@@ -8,9 +8,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "usuario")
 @NamedQueries({
-    @NamedQuery(name = "user.findbyEmailAndPassword",
-            query = "Select u From Usuario u Where u.email = :email and u.password = :password"),
-    
+    @NamedQuery(name = "usuario.findbyEmailAndPassword",
+            query = "Select u From Usuario u where u.email = :email and u.password = :password")
 })
 public class Usuario extends AbstractEntity{
 
@@ -27,9 +26,9 @@ public class Usuario extends AbstractEntity{
         this.password = password;
     }
     
-    public Boolean login(){
+    /*public Boolean login(){
         return(this.getEmail().equals("poo2018@unnoba.edu.ar") && this.getPassword().equals("unnoba2018!"));
-    }
+    }/*
 
     /**
      * @return the email

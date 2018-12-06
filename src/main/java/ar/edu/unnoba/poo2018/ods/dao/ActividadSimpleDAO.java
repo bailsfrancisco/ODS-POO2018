@@ -1,3 +1,4 @@
+
 package ar.edu.unnoba.poo2018.ods.dao;
 
 import ar.edu.unnoba.poo2018.ods.model.ActividadSimple;
@@ -55,5 +56,4 @@ public class ActividadSimpleDAO extends AbstractDAO<ActividadSimple> {
         }
         return true;
      }
-    
 }
