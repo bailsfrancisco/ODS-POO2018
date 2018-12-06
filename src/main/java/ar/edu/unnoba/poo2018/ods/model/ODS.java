@@ -10,8 +10,6 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "ods.allODS",
             query = "Select o From ODS o"),
-    @NamedQuery(name = "ods.deleteODS",
-            query = "Delete From ODS O Where o.nombre = :nombre "),
  })
 public class ODS extends AbstractEntity{
     

@@ -20,8 +20,7 @@ import javax.persistence.OneToMany;
 })
 public class ActividadSimple extends Actividad implements Serializable {
 
-    @JoinColumn(name = "actividad_simple_id")
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "actividad")
     private List<Impacto> impactos;
 
     public ActividadSimple() {
@@ -30,4 +29,14 @@ public class ActividadSimple extends Actividad implements Serializable {
     public ActividadSimple(String nombreActividad, Date fechaInicio, Date fechaFin, String resolucion, String expediente, Ambito ambito, Convocatoria convocatoria, LineaEstrategica lineaEstrategica, ArrayList<Usuario> responsables) {
         super(nombreActividad, fechaInicio, fechaFin, resolucion, expediente, ambito, convocatoria, lineaEstrategica, responsables);
     }
+
+    public List<Impacto> getImpactos() {
+        return impactos;
+    }
+
+    public void setImpactos(List<Impacto> impactos) {
+        this.impactos = impactos;
+    }
+    
+    
 }

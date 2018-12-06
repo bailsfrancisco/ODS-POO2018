@@ -51,12 +51,24 @@ public class ODSBacking implements Serializable {
 
     }
     
-    public ODS getUser() {
+    public ODS getODS() {
         return ods;
     }
 
-    public void setUser(ODS ods) {
+    public void setODS(ODS ods) {
         this.ods = ods;
+    }
+    
+    public String Agregar() {
+        return "new?faces-redirect=true";
+    }
+    
+    public String Modificar() {
+        return "edit?faces-redirect=true";
+    }
+    
+    public String Borrar() {
+        return "index?faces-redirect=true";
     }
     
 
