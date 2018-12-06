@@ -1,14 +1,12 @@
 #principal{
-    background-image: url("../images/image1.jpg");
-    background-size: cover;
+    background: url(../images/image3.jpg);
     background-repeat: no-repeat;
 }
 
-
 #cuadro{
-    margin: 200px auto;
-    width: 30%;
-    text-align: center;
-    background: rgba(0,0,0,0.4); /* red,green,blue, opacidad */
+    margin: 300px auto;
+    opacity: 0.9;
     box-shadow: 0px 0px 40px black;
+    width: 60%;
+    height: 100px;
 }

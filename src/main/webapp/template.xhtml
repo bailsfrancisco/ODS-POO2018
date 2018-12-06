@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <ui:insert name="head"></ui:insert>
+        <title>
+            <ui:insert name="title">ODS</ui:insert>
+        </title>
+    </h:head>
+
+    <h:body>
+        <f:view contentType="text/html">
+            <h:form>
+                <p:growl id="messages" autoUpdate="true"></p:growl>
+                <div id="top">
+                    <h:outputText value="#{sessionBacking.usuario.email} "/>
+                    <p:commandLink action="#{sessionBacking.logout()}" 
+                                   value="#{i18n['cerrarSesion']}"></p:commandLink>
+                    <p:menubar>
+                        <p:submenu label="#{i18n['labelUsuarios']}">
+                            <p:menuitem value="Listar" url="/Usuarios/index.xhtml" />
+                            <p:menuitem value="Nuevo" url="/Usuarios/new.xhtml" />
+                        </p:submenu>
+                    </p:menubar>
+                    <ui:insert name="top"></ui:insert>
+                </div>
+
+                <div id="content" class="center_content">
+                    <ui:insert name="content">Content</ui:insert>
+                </div>
+
+                <div id="bottom">
+                    <ui:insert name="bottom"></ui:insert>
+                </div>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
