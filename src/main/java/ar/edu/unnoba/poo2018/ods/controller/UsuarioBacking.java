@@ -42,7 +42,7 @@ public class UsuarioBacking implements Serializable {
     public String update(){
         try{
             usuarioDAO.update(usuario);
-            return "/usuario/index?faces-redirect=true";
+            return "/usuarios/index?faces-redirect=true";
         }catch(Exception e){
             return null;
         }

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-       template="../resources/css/template.xhtml">
+      template="../resources/css/template.xhtml">
 
     <h:head>
         <title> #{i18n['welcome']}</title>
@@ -16,9 +16,11 @@
                 <p:messages id="messages" />
                 <h:panelGrid columns="2" cellpadding="5">
                     <p:outputLabel value="#{sessionBacking.getUsuario().getEmail()}"></p:outputLabel>
+                    <br></br>
+                    <p:link outcome="/usuarios/index.xhtml" value="Entrar al sitio"></p:link>
                 </h:panelGrid>
             </p:panel>
-            <p:commandLink action="#{sessionBacking.logout()}"> "#{i18n['linkSalir']}" </p:commandLink>
+            <p:commandLink action="#{sessionBacking.logout()}">#{i18n['linkSalir']}</p:commandLink>
         </h:form>
     </h:body>
 </html>

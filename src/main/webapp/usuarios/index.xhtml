@@ -23,11 +23,11 @@
                 </h:link>
             </p:column>
             <p:column>
-                <p:commandLink actionListener="#{usuarioBacking.delete(user)}" 
+                <p:commandLink actionListener="#{usuarioBacking.delete(usuario)}" 
                                value="#{i18n['linkQuitar']}"
                                update="usuarios">
                     <p:confirm header="#{i18n['headerConfirmacion']}" 
-                               message="#{i18n['mensajeEliminar']} #{usuario.email}?" 
+                               message="#{i18n['mensajeEliminarUsuario']} #{usuario.email}?" 
                                icon="ui-icon-alert" />
                 </p:commandLink>
             </p:column>

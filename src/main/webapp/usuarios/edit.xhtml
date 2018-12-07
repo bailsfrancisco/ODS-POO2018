@@ -20,7 +20,7 @@
             <p:inputText value="#{usuarioBacking.usuario.email}"/>
             <p:outputLabel value="#{i18n['contraseña']}"></p:outputLabel>
             <p:password value="#{usuarioBacking.usuario.password}"/>
-            <p:commandButton value="#{i18n['actualizar']}" 
+            <p:commandButton value="#{i18n['botonActualizar']}" 
                              action="#{usuarioBacking.update()}" 
                              update="messages"/>
             <p:button value="#{i18n['botonCancelar']}" outcome="/usuarios/index"/>
