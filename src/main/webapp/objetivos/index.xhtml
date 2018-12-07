@@ -8,7 +8,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="../resources/css/template.xhtml">
+        <ui:composition template="/template.xhtml">
             <ui:define name="a">
                 <p:commandLink action="#{ODSBacking.agregar()}"> "#{i18n['linkAgregar']}" </p:commandLink>
             </ui:define>
@@ -31,7 +31,6 @@
                 </p:panelGrid>
                 <p:separator/>
         </ui:define>
-            
         </ui:composition>
     </h:body>
 </html>

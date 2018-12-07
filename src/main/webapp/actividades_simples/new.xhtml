@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui"
-    template="../resources/css/template.xhtml">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../template.xhtml">
 
     <ui:define name="content">
         <h2>#{i18n['headerIngresarActividad']}</h2>
@@ -14,7 +14,7 @@
             <p:outputLabel value="#{i18n['nombreActividad']}"></p:outputLabel>
             <p:inputText value="#{actividadBacking.actividad.nombreActividad}"/>
         </p:panelGrid>
-        
+
         <p:panelGrid columns="2" >
             <p:outputLabel value="#{i18n['objetivo']}"></p:outputLabel>
             <p:selectOneMenu value="#{actividadBacking.impacto.objetivo}">
@@ -24,15 +24,15 @@
             <p:outputLabel value="#{i18n['peso']}"></p:outputLabel>
             <p:inputText value="#{actividadBacking.impacto.peso}"/>
             <p:commandButton value="#{i18n['agregarImpacto']}" 
-                         actionListener="#{actividadBacking.agregarImpacto()}" 
-                         update="messages,actividad_impactos"/>
+                             actionListener="#{actividadBacking.agregarImpacto()}" 
+                             update="messages,actividad_impactos"/>
         </p:panelGrid>
-       
+
         <p:dataTable id="actividad_impactos" value="#{actividadBacking.actividad.impactos}" var="impacto">
             <p:column headerText="#{i18n['objetivo']}">#{impacto.objetivo}</p:column>
             <p:column headerText="#{i18n['peso']}">#{impacto.peso}</p:column>
         </p:dataTable>
-            
+
         <p:commandButton value="#{i18n['botonGuardar']}" 
                          action="#{actividadBacking.create()}" 
                          update="messages"/>

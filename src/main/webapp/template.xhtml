@@ -19,19 +19,28 @@
             <h:form>
                 <p:growl id="messages" autoUpdate="true"></p:growl>
                 <div id="top">
-                    <h:outputText value="#{sessionBacking.usuario.email} "/>
-                    <p:commandLink action="#{sessionBacking.logout()}"
-                                   value="#{i18n['cerrarSesion']}"></p:commandLink>
                     <p:menubar>
                         <p:submenu label="#{i18n['labelUsuarios']}">
                             <p:menuitem value="#{i18n['listarUsuarios']}" url="/usuarios/index.xhtml" />
                             <p:menuitem value="#{i18n['nuevoUsuario']}" url="/usuarios/new.xhtml" />
-                        </p:submenu>                 
+                        </p:submenu>
+                        <p:submenu label="#{i18n['labelActividad']}">
+                            <p:menuitem value="#{i18n['listarActividad']}" url="/actividades_simples/index.xhtml" />
+                            <p:menuitem value="#{i18n['nuevaActividad']}" url="/actividades_simples/new.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="#{i18n['labelObjetivo']}">
+                            <p:menuitem value="#{i18n['listarObjetivo']}" url="/objetivos/index.xhtml" />
+                            <p:menuitem value="#{i18n['nuevoObjetivo']}" url="/objetivos/new.xhtml" />
+                        </p:submenu>
+                        <f:facet name="options">
+                            <h:outputText value="#{sessionBacking.usuario.email} "/>
+                            <p:commandButton action="#{sessionBacking.logout()}" value="#{i18n['cerrarSesion']}" icon="ui-icon-extlink"></p:commandButton>
+                        </f:facet>
                     </p:menubar>
                     <ui:insert name="top"></ui:insert>
                 </div>
                 <div id="content" class="center_content">
-                    <ui:insert name="content">Content</ui:insert>
+                    <ui:insert name="content"></ui:insert>
                 </div>
                 <div id="bottom">
                     <ui:insert name="bottom"></ui:insert>
