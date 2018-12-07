@@ -20,7 +20,6 @@ public class Usuario extends AbstractEntity{
     private String email;
     private String password;
     private Boolean admin;
-    private String descripcion;
     
     @ManyToMany(mappedBy = "responsables")
     private List<Actividad> actividades;
