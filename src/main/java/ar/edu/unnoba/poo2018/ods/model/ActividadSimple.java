@@ -8,15 +8,19 @@ import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @DiscriminatorValue("actividad_simple")
+@NamedQueries({
+    @NamedQuery(name = "actividadSimple.getAllActividadSimple",
+            query = "Select a From ActividadSimple a")
+})
 public class ActividadSimple extends Actividad implements Serializable {
 
-    @JoinColumn(name = "actividad_simple_id")
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "actividad")
     private List<Impacto> impactos;
 
     public ActividadSimple() {
@@ -25,4 +29,14 @@ public class ActividadSimple extends Actividad implements Serializable {
     public ActividadSimple(String nombreActividad, Date fechaInicio, Date fechaFin, String resolucion, String expediente, Ambito ambito, Convocatoria convocatoria, LineaEstrategica lineaEstrategica, ArrayList<Usuario> responsables) {
         super(nombreActividad, fechaInicio, fechaFin, resolucion, expediente, ambito, convocatoria, lineaEstrategica, responsables);
     }
+
+    public List<Impacto> getImpactos() {
+        return impactos;
+    }
+
+    public void setImpactos(List<Impacto> impactos) {
+        this.impactos = impactos;
+    }
+    
+    
 }

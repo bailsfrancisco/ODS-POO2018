@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    template="../resources/css/template.xhtml">
+    
+    <ui:define name="content">
+        <p:dataTable id="usuarios"
+                     value="#{usuarioBacking.usuarios}" 
+            var="usuario">
+            <p:column headerText="#{i18n['email']}">
+                <h:outputText value="#{usuario.email}"/>
+            </p:column>
+            <p:column headerText="#{i18n['contraseña']}">
+                <h:outputText value="#{usuario.password}"/>
+            </p:column>
+            <p:column>
+                <h:link outcome="/usuarios/edit" value="#{i18n['editar']}">
+                    <f:param name="id" value="#{usuario.id}" />
+                </h:link>
+            </p:column>
+            <p:column>
+                <p:commandLink actionListener="#{usuarioBacking.delete(user)}" 
+                               value="#{i18n['linkQuitar']}"
+                               update="usuarios">
+                    <p:confirm header="#{i18n['headerConfirmacion']}" 
+                               message="#{i18n['mensajeEliminar']} #{usuario.email}?" 
+                               icon="ui-icon-alert" />
+                </p:commandLink>
+            </p:column>
+        </p:dataTable>
+        <p:button value="#{i18n['botonNuevo']}" outcome="/usuarios/new"/>
+
+
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </p:confirmDialog>
+    </ui:define>
+</ui:composition>

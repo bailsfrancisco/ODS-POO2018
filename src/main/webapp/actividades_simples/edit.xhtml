@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    template="../resources/css/template.xhtml">
+    
+    <ui:define name="head">
+        <f:metadata>
+            <f:viewParam name="id" value="#{actividadSimpleBacking.actividad}"/>
+        </f:metadata>
+    </ui:define>
+    <ui:define name="content">
+        <h2>#{i18n['headerEditarActividad']}</h2>
+        <br />
+            <p:panelGrid columns="2" styleClass="">
+                <p:outputLabel value="#{i18n['nombreActividad']}"></p:outputLabel>
+                <p:inputText value="#{actividadSimpleBacking.actividad.nombreActividad}"/>
+            </p:panelGrid>
+        
+        <p:panelGrid columns="2" >
+            <p:outputLabel value="#{i18n['objetivo']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadSimpleBacking.impacto.objetivo}">
+                <f:selectItems value="#{actividadSimpleBacking.objetivos}" 
+                               var="objetivo" itemLabel="#{objetivo.nombre}"/>
+            </p:selectOneMenu>
+            <p:outputLabel value="#{i18n['peso']}"></p:outputLabel>
+            <p:inputText value="#{actividadSimpleBacking.impacto.peso}"/>
+            <p:commandButton value="#{i18n['agregarImpacto']}" 
+                         actionListener="#{actividadSimpleBacking.agregarImpacto()}" 
+                         update="messages,actividad_impactos"/>
+        </p:panelGrid>
+        
+        <p:dataTable id="actividad_impactos" value="#{actividadSimpleBacking.actividad.impactos}" var="impacto">
+            <p:column headerText="#{i18n['objetivo']}">#{impacto.objetivo}</p:column>
+            <p:column headerText="#{i18n['peso']}">#{impacto.peso}</p:column>
+            <p:column>
+                <p:commandLink actionListener="#{actividadSimpleBacking.quitarImpacto(impacto)}" 
+                               value="#{i18n['linkQuitar']}" update="actividad_impactos"/>
+            </p:column>
+        </p:dataTable>
+        <p:commandButton value="#{i18n['botonGuardar']}" 
+                         action="#{actividadSimpleBacking.update()}" 
+                         update="messages"/>
+        <p:button value="#{i18n['botonCancelar']}" outcome="/actividades_simples/index"/>
+    </ui:define>
+</ui:composition>

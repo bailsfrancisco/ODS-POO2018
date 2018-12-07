@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ar.edu.unnoba.poo2018.ods.dao;
 
 import ar.edu.unnoba.poo2018.ods.model.ODS;
@@ -13,14 +8,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author bailsfrancisco
- */
 @Stateless
 public class ODSDAO extends AbstractDAO<ODS> {
-
-    private ODS ods;
 
     @PersistenceContext(unitName = "PU")
     private EntityManager em;
@@ -29,7 +18,18 @@ public class ODSDAO extends AbstractDAO<ODS> {
         super(ODS.class);
     }
 
-    public boolean agregarOds() throws Exception {
+    public List traerOds() {
+        Query query = em.createNamedQuery("ods.allODS");
+        List<ODS> ods = null;
+        try {
+            ods = query.getResultList();
+        } catch (NoResultException nre) {
+            return null;
+        }
+        return ods;
+    }
+
+    public boolean agregarOds(ODS ods) {
         try {
             em.persist(ods);
         } catch (Exception ex) {
@@ -38,7 +38,7 @@ public class ODSDAO extends AbstractDAO<ODS> {
         return true;
     }
 
-    public boolean borrarOds() throws Exception {
+    public boolean borrarOds(ODS ods) {
         try {
             em.remove(ods);
         } catch (Exception ex) {
@@ -47,7 +47,7 @@ public class ODSDAO extends AbstractDAO<ODS> {
         return true;
     }
 
-    public boolean modificarOds() throws Exception {
+    public boolean modificarOds(ODS ods) {
         try {
             em.merge(ods);
         } catch (Exception ex) {
@@ -56,16 +56,8 @@ public class ODSDAO extends AbstractDAO<ODS> {
         return true;
     }
 
-    public List findAll() {
-        Query query = em.createNamedQuery("ods.allODS");
-        List<ODS> ODS = null;
-        try {
-            ODS = query.getResultList();
-        } catch (NoResultException nre) {
-            return null;
-        }
-        return ODS;
+    public List<ODS> getAll() {
+        Query query = em.createNamedQuery("objetivo.all");
+        return query.getResultList();
     }
 }
-
-

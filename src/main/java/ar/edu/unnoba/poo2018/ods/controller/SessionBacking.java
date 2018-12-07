@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ar.edu.unnoba.poo2018.ods.controller;
 
 import ar.edu.unnoba.poo2018.ods.dao.UsuarioDAO;
@@ -55,12 +50,12 @@ public class SessionBacking implements Serializable {
    
     
     @Inject
-    private PropertyResourceBundle bundle;
+    private transient PropertyResourceBundle bundle;
 
     @PostConstruct
     public void init() {
     }
-
+    
     public String login() {
         usuario = usuarioDAO.login(email, password);
         if (usuario == null) {

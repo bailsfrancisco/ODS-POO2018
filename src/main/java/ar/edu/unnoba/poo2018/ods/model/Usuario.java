@@ -11,7 +11,9 @@ import javax.persistence.Table;
 @Table(name = "usuario")
 @NamedQueries({
     @NamedQuery(name = "user.findbyEmailAndPassword",
-            query = "Select u From Usuario u where u.email = :email and u.password = :password")
+            query = "Select u From Usuario u where u.email = :email and u.password = :password"),
+    @NamedQuery(name = "usuario.allUsers",
+            query = "Select u From Usuario u"),
 })
 public class Usuario extends AbstractEntity{
 

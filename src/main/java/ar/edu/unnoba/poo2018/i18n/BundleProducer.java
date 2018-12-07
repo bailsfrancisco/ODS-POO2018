@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ar.edu.unnoba.poo2018.i18n;
-
-/**
- *
- * @author gabriel
- */
 
 import java.util.PropertyResourceBundle;
 import javax.enterprise.context.RequestScoped;
