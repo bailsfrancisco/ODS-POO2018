@@ -70,7 +70,7 @@ public class SessionBacking implements Serializable {
     }
 
     public String logout() {
-        usuario = new Usuario();
+        usuario = null;
         return "index?faces-redirect=true";
     }
 }

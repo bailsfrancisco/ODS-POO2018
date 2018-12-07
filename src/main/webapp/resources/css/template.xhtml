@@ -26,15 +26,13 @@
                         <p:submenu label="#{i18n['labelUsuarios']}">
                             <p:menuitem value="#{i18n['listarUsuarios']}" url="/usuarios/index.xhtml" />
                             <p:menuitem value="#{i18n['nuevoUsuario']}" url="/usuarios/new.xhtml" />
-                        </p:submenu>
+                        </p:submenu>                 
                     </p:menubar>
                     <ui:insert name="top"></ui:insert>
                 </div>
-
                 <div id="content" class="center_content">
                     <ui:insert name="content">Content</ui:insert>
                 </div>
-
                 <div id="bottom">
                     <ui:insert name="bottom"></ui:insert>
                 </div>
