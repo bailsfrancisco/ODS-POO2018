@@ -17,72 +17,71 @@ import javax.inject.Named;
 @ViewScoped
 public class ActividadSimpleBacking implements Serializable {
 
-    private ActividadSimple actividad;
+      private ActividadSimple actividadSimple;
     private Impacto impacto;
-
+    
     @PostConstruct
-    public void init() {
-        this.actividad = new ActividadSimple();
+    public void init(){
+        this.actividadSimple = new ActividadSimple();
         this.impacto = new Impacto();
     }
-
+    
     @EJB
     private ActividadSimpleDAO actividadSimpleDAO;
-
+    
     @EJB
-    private ODSDAO objetivoDao;
-
-    public List<ActividadSimple> getAs() {
-        return actividadSimpleDAO.traerAct();
+    private ODSDAO ODSDAO;
+    
+    public List<ActividadSimple> getActividades(){
+        return actividadSimpleDAO.getAll();
     }
-
-    public List<ODS> getObjetivos() {
-        return objetivoDao.traerOds();
+    
+    public List<ODS> getObjetivos(){
+        return ODSDAO.getAll();
     }
-
-    public void agregarImpacto() {
-        impacto.setActividad(actividad);
-        if (actividad.getImpactos() == null) {
-            actividad.setImpactos(new ArrayList<Impacto>());
+    
+    public void agregarImpacto(){
+        impacto.setActividad(actividadSimple);
+        if(actividadSimple.getImpactos()==null){
+            actividadSimple.setImpactos(new ArrayList<Impacto>());
         }
-        this.actividad.getImpactos().add(impacto);
+        this.actividadSimple.getImpactos().add(impacto);
         impacto = new Impacto();
     }
-
-    public void quitarImpacto(Impacto impacto) {
-        this.actividad.getImpactos().remove(impacto);
+    
+    public void quitarImpacto(Impacto impacto){
+        this.actividadSimple.getImpactos().remove(impacto);
     }
-
-    public String create() {
-        try {
-            actividadSimpleDAO.agregarAct(actividad);
+    
+    
+    public String create(){
+        try{
+            actividadSimpleDAO.create(actividadSimple);
             return "/actividades_simples/index?faces-redirect=true";
-        } catch (Exception e) {
+        }catch(Exception e){
             return null;
         }
     }
-
-    public String update() {
-        try {
-            actividadSimpleDAO.modificarAct(actividad);
+    
+    public String update(){
+        try{
+           actividadSimpleDAO.update(actividadSimple);
             return "/actividades_simples/index?faces-redirect=true";
-        } catch (Exception e) {
+        }catch(Exception e){
             return null;
         }
     }
-
-    public void delete(ActividadSimple actividad) {
-
-        actividadSimpleDAO.borrarAct(actividad);
-
+    
+    public void delete(ActividadSimple actividad){
+       actividadSimpleDAO.delete(actividadSimple);
     }
 
     public ActividadSimple getActividad() {
-        return actividad;
+        return actividadSimple;
     }
 
-    public void setActividad(ActividadSimple actividad) {
-        this.actividad = actividad;
+    public void setActividad(ActividadSimple actividadSimple) {
+        this.actividadSimple = actividadSimple;
     }
 
     public Impacto getImpacto() {

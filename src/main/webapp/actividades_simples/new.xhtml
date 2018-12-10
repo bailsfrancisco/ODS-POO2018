@@ -12,29 +12,29 @@
         <br />
         <p:panelGrid columns="2" styleClass="">
             <p:outputLabel value="#{i18n['nombreActividad']}"></p:outputLabel>
-            <p:inputText value="#{actividadBacking.actividad.nombreActividad}"/>
+            <p:inputText value="#{actividadSimpleBacking.actividad.nombreActividad}"/>
         </p:panelGrid>
 
         <p:panelGrid columns="2" >
             <p:outputLabel value="#{i18n['objetivo']}"></p:outputLabel>
-            <p:selectOneMenu value="#{actividadBacking.impacto.objetivo}">
-                <f:selectItems value="#{actividadBacking.objetivos}" 
+            <p:selectOneMenu value="#{actividadSimpleBacking.impacto.objetivo}">
+                <f:selectItems value="#{actividadSimpleBacking.objetivos}" 
                                var="objetivo" itemLabel="#{objetivo.nombre}"/>
             </p:selectOneMenu>
             <p:outputLabel value="#{i18n['peso']}"></p:outputLabel>
-            <p:inputText value="#{actividadBacking.impacto.peso}"/>
+            <p:inputText value="#{actividadSimpleBacking.impacto.peso}"/>
             <p:commandButton value="#{i18n['agregarImpacto']}" 
-                             actionListener="#{actividadBacking.agregarImpacto()}" 
+                             actionListener="#{actividadSimpleBacking.agregarImpacto()}" 
                              update="messages,actividad_impactos"/>
         </p:panelGrid>
 
-        <p:dataTable id="actividad_impactos" value="#{actividadBacking.actividad.impactos}" var="impacto">
+        <p:dataTable id="actividad_impactos" value="#{actividadSimpleBacking.actividad.impactos}" var="impacto">
             <p:column headerText="#{i18n['objetivo']}">#{impacto.objetivo}</p:column>
             <p:column headerText="#{i18n['peso']}">#{impacto.peso}</p:column>
         </p:dataTable>
 
         <p:commandButton value="#{i18n['botonGuardar']}" 
-                         action="#{actividadBacking.create()}" 
+                         action="#{actividadSimpleBacking.create()}" 
                          update="messages"/>
         <p:button value="#{i18n['botonCancelar']}" outcome="/actividades_simples/index"/>
     </ui:define>

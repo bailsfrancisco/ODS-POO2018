@@ -56,7 +56,7 @@ public class ActividadBacking implements Serializable {
     public String create(){
         try{
             actividadSimpleDAO.create(actividadSimple);
-            return "/actividades/index?faces-redirect=true";
+            return "/actividades_simples/index?faces-redirect=true";
         }catch(Exception e){
             return null;
         }
@@ -65,7 +65,7 @@ public class ActividadBacking implements Serializable {
     public String update(){
         try{
            actividadSimpleDAO.update(actividadSimple);
-            return "/actividades/index?faces-redirect=true";
+            return "/actividades_simples/index?faces-redirect=true";
         }catch(Exception e){
             return null;
         }

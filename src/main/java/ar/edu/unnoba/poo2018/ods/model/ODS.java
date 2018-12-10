@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Table(name = "ods")
 @NamedQueries({
     @NamedQuery(name = "ods.allODS",
-            query = "Select o From ODS o"),
+            query = "Select o From ODS o order by o.nombre"),
     
 })
 public class ODS extends AbstractEntity{
@@ -30,4 +30,11 @@ public class ODS extends AbstractEntity{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    
+    @Override
+    public String toString() {
+        return nombre;
+    }
+    
 }

@@ -57,7 +57,7 @@ public class ODSDAO extends AbstractDAO<ODS> {
     }
 
     public List<ODS> getAll() {
-        Query query = em.createNamedQuery("objetivo.all");
+        Query query = em.createNamedQuery("ods.allODS");
         return query.getResultList();
     }
 }
