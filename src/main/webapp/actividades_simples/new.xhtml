@@ -38,6 +38,10 @@
         <p:dataTable id="actividad_impactos" value="#{actividadSimpleBacking.actividad.impactos}" var="impacto">
             <p:column headerText="#{i18n['objetivo']}">#{impacto.objetivo}</p:column>
             <p:column headerText="#{i18n['peso']}">#{impacto.peso}</p:column>
+            <p:column>
+                <p:commandLink actionListener="#{actividadSimpleBacking.quitarImpacto(impacto)}" 
+                               value="#{i18n['linkQuitar']}" update="actividad_impactos"/>
+            </p:column>
         </p:dataTable>
 
         <p:commandButton value="#{i18n['botonGuardar']}" 

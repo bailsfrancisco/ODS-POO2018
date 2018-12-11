@@ -11,9 +11,6 @@ import javax.persistence.Query;
 @Stateless
 public class ActividadSimpleDAO extends AbstractDAO<ActividadSimple> {
 
-    @PersistenceContext(unitName = "PU")
-    private EntityManager em;
-
     public ActividadSimpleDAO() {
         super(ActividadSimple.class);
     }

@@ -20,7 +20,6 @@ public class AbstractEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     private Long id;
 
     public Long getId() {
@@ -45,11 +44,15 @@ public class AbstractEntity implements Serializable {
             return false;
         } else if (!(obj instanceof AbstractEntity)) {
             return false;
+
+        } else if (((AbstractEntity) obj).id == null) {
+            return super.equals(obj);
+
         } else if (((AbstractEntity) obj).id.equals(this.id)) {
             return true;
+
         } else {
             return false;
         }
     }
-
 }

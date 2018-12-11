@@ -4,17 +4,24 @@ import ar.edu.unnoba.poo2018.ods.dao.ODSDAO;
 import ar.edu.unnoba.poo2018.ods.model.ODS;
 import java.io.Serializable;
 import java.util.List;
+import java.util.PropertyResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 @ManagedBean
 @ViewScoped
 public class ODSBacking implements Serializable {
 
     private ODS ods;
-
+    
+    @Inject
+    private transient PropertyResourceBundle bundle;
+    
     @PostConstruct
     public void init() {
         this.ods = new ODS();
@@ -45,10 +52,15 @@ public class ODSBacking implements Serializable {
         }
     }
 
+
     public void delete(ODS ods) {
-
-        odsDAO.delete(ods);
-
+        try {
+            odsDAO.delete(ods);
+        } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message = new FacesMessage(bundle.getString("No se puede borrar el objetivo porque pertenece a alguna Actividad !"));
+            context.addMessage(null, message);
+        }
     }
 
     public ODS getODS() {

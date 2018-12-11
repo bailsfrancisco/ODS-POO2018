@@ -74,7 +74,7 @@ public class ActividadSimpleBacking implements Serializable {
     }
     
     public void delete(ActividadSimple actividad){
-       actividadSimpleDAO.delete(actividadSimple);
+       actividadSimpleDAO.delete(actividad);
     }
 
     public ActividadSimple getActividad() {
