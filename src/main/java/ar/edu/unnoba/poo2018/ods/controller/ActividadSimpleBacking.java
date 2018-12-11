@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.inject.Named;
 
 @ManagedBean
 @ViewScoped
@@ -31,14 +31,14 @@ public class ActividadSimpleBacking implements Serializable {
     private ActividadSimpleDAO actividadSimpleDAO;
     
     @EJB
-    private ODSDAO ODSDAO;
+    private ODSDAO odsDAO;
     
     public List<ActividadSimple> getActividades(){
         return actividadSimpleDAO.getAll();
     }
     
     public List<ODS> getObjetivos(){
-        return ODSDAO.getAll();
+        return odsDAO.getAll();
     }
     
     public void agregarImpacto(){

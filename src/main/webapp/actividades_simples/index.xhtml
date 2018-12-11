@@ -9,7 +9,7 @@
 
     <ui:define name="content">
         <p:dataTable id="actividades"
-                     value="#{actividadBacking.actividades}" 
+                     value="#{actividadSimpleBacking.actividades}" 
                      var="actividad">
             <p:column headerText="#{i18n['headerActividad']}">
                 <h:outputText value="#{actividad.nombreActividad}"/>
@@ -36,7 +36,7 @@
                 </h:link>
             </p:column>
             <p:column>
-                <p:commandLink actionListener="#{actividadBacking.delete(actividad)}" 
+                <p:commandLink actionListener="#{actividadSimpleBacking.delete(actividad)}" 
                                value="#{i18n['linkQuitar']}"
                                update="actividades">
                     <p:confirm header="#{i18n['headerConfirmacion']}" 

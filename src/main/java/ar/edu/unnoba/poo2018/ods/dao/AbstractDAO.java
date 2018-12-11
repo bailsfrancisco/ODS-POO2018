@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 /**
  *
  * @author bailsfrancisco
+ * @param <T>
  */
 public abstract class AbstractDAO<T> {
     final Class<T> typeParameter;

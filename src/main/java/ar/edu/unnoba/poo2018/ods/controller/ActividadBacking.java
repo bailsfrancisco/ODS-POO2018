@@ -16,6 +16,7 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class ActividadBacking implements Serializable {
+    
     private ActividadSimple actividadSimple;
     private Impacto impacto;
     
@@ -72,7 +73,7 @@ public class ActividadBacking implements Serializable {
     }
     
     public void delete(ActividadSimple actividad){
-       actividadSimpleDAO.delete(actividadSimple);
+       actividadSimpleDAO.delete(actividad);
     }
 
     public ActividadSimple getActividad() {

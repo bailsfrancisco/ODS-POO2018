@@ -7,16 +7,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "impacto")
-public class Impacto extends AbstractEntity{
-    
+public class Impacto extends AbstractEntity {
+
     private Integer peso;
-    
+
     @ManyToOne
     @JoinColumn(name = "actividad_id")
     private ActividadSimple actividad;
-    
+
+    /*
     @JoinColumn(name = "objetivo_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false)*/
+    @ManyToOne
+    @JoinColumn(name = "objetivo_id")
     private ODS objetivo;
 
     public Impacto() {
@@ -50,7 +53,5 @@ public class Impacto extends AbstractEntity{
     public void setActividad(ActividadSimple actividad) {
         this.actividad = actividad;
     }
-    
-    
-    
+
 }
