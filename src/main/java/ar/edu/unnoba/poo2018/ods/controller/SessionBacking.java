@@ -47,15 +47,14 @@ public class SessionBacking implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-   
-    
+
     @Inject
     private transient PropertyResourceBundle bundle;
 
     @PostConstruct
     public void init() {
     }
-    
+
     public String login() {
         usuario = usuarioDAO.login(email, password);
         if (usuario == null) {
@@ -66,7 +65,8 @@ public class SessionBacking implements Serializable {
             context.addMessage(null, message);
             return null;
         }
-        return "welcome?faces-redirect=true";
+        //return "welcome?faces-redirect=true";
+        return "actividades_simples/index?faces-redirect=true";
     }
 
     public String logout() {

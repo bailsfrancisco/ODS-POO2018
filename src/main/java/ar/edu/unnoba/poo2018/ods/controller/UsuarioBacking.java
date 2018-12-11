@@ -49,13 +49,7 @@ public class UsuarioBacking implements Serializable {
     }
     
     public void delete(Usuario usuario){
-       // if(!sessionBacking.getUser().equals(user)){
             usuarioDAO.delete(usuario);
-        /*}else{
-           FacesContext context = FacesContext.getCurrentInstance();
-           FacesMessage message = new FacesMessage("No puede borrar este usuario");
-           context.addMessage(null, message);
-        }*/
     }
 
     public Usuario getUsuario() {
