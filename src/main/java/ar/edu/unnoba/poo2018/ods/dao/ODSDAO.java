@@ -18,6 +18,7 @@ public class ODSDAO extends AbstractDAO<ODS> {
         super(ODS.class);
     }
 
+    /* ESTO NO ES NECESARIO, TOMA LOS METODOS DEL ABSTRACT DAO
     public List traerOds() {
         Query query = em.createNamedQuery("ods.allODS");
         List<ODS> ods = null;
@@ -54,7 +55,7 @@ public class ODSDAO extends AbstractDAO<ODS> {
             return false;
         }
         return true;
-    }
+    }*/
 
     public List<ODS> getAll() {
         Query query = em.createNamedQuery("ods.allODS");

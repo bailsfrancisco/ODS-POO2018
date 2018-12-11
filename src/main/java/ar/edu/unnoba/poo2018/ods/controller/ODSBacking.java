@@ -6,10 +6,10 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.inject.Named;
 
-@Named
+@ManagedBean
 @ViewScoped
 public class ODSBacking implements Serializable {
 
@@ -24,12 +24,12 @@ public class ODSBacking implements Serializable {
     private ODSDAO odsDAO;
 
     public List<ODS> getOds() {
-        return odsDAO.traerOds();
+        return odsDAO.getAll();
     }
 
     public String create() {
         try {
-            odsDAO.agregarOds(ods);
+            odsDAO.create(ods);
             return "/objetivos/index?faces-redirect=true";
         } catch (Exception e) {
             return null;
@@ -38,7 +38,7 @@ public class ODSBacking implements Serializable {
 
     public String update() {
         try {
-            odsDAO.modificarOds(ods);
+            odsDAO.update(ods);
             return "/objetivos/index?faces-redirect=true";
         } catch (Exception e) {
             return null;
@@ -47,10 +47,10 @@ public class ODSBacking implements Serializable {
 
     public void delete(ODS ods) {
 
-        odsDAO.borrarOds(ods);
+        odsDAO.delete(ods);
 
     }
-    
+
     public ODS getODS() {
         return ods;
     }
@@ -58,18 +58,16 @@ public class ODSBacking implements Serializable {
     public void setODS(ODS ods) {
         this.ods = ods;
     }
-    
+
     public String Agregar() {
         return "new?faces-redirect=true";
     }
-    
+
     public String Modificar() {
         return "edit?faces-redirect=true";
     }
-    
+
     public String Borrar() {
         return "index?faces-redirect=true";
     }
-    
-
 }

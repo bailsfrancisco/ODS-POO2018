@@ -11,33 +11,31 @@ import javax.persistence.Table;
 @Table(name = "usuario")
 @NamedQueries({
     @NamedQuery(name = "user.findbyEmailAndPassword",
-            query = "Select u From Usuario u where u.email = :email and u.password = :password"),
+            query = "Select u From Usuario u where u.email = :email and u.password = :password")
+    ,
     @NamedQuery(name = "usuario.allUsers",
-            query = "Select u From Usuario u"),
-})
-public class Usuario extends AbstractEntity{
+            query = "Select u From Usuario u"),})
+public class Usuario extends AbstractEntity {
 
     private String email;
     private String password;
     private Boolean admin;
-    
+
     @ManyToMany(mappedBy = "responsables")
     private List<Actividad> actividades;
 
     public Usuario() {
     }
 
-    
     public Usuario(String email, String password) {
         this.email = email;
         this.password = password;
     }
-    
+
     /*
     public Boolean login(){
         return(this.getEmail().equals("poo2018@unnoba.edu.ar") && this.getPassword().equals("unnoba2018!"));
     }*/
-
     /**
      * @return the email
      */

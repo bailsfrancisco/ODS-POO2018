@@ -9,16 +9,14 @@ import javax.persistence.Table;
 @Table(name = "ods")
 @NamedQueries({
     @NamedQuery(name = "ods.allODS",
-            query = "Select o From ODS o order by o.nombre"),
-    
-})
-public class ODS extends AbstractEntity{
-    
+            query = "Select o From ODS o"),})
+public class ODS extends AbstractEntity {
+
     private String nombre;
 
     public ODS() {
     }
-    
+
     public ODS(String nombre) {
         this.nombre = nombre;
     }
@@ -30,11 +28,10 @@ public class ODS extends AbstractEntity{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
+
     @Override
     public String toString() {
         return nombre;
     }
-    
+
 }

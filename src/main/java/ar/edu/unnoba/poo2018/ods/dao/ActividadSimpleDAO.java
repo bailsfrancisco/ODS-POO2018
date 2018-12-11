@@ -18,6 +18,8 @@ public class ActividadSimpleDAO extends AbstractDAO<ActividadSimple> {
         super(ActividadSimple.class);
     }
 
+    
+    /* IDEM QUE ODSBacking
     public List traerAct() {
         Query query = em.createNamedQuery("ods.allODS");
         List<ActividadSimple> as = null;
@@ -54,10 +56,10 @@ public class ActividadSimpleDAO extends AbstractDAO<ActividadSimple> {
             return false;
         }
         return true;
-    }
+    }*/
 
     public List<ActividadSimple> getAll() {
-        Query query = em.createNamedQuery("actividad.all");
+        Query query = em.createNamedQuery("actividadSimple.getAllActividadSimple");
         return query.getResultList();
     }
 }
