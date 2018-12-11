@@ -10,14 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
-@Named
+@ManagedBean
 @ViewScoped
 public class ActividadSimpleBacking implements Serializable {
 
-      private ActividadSimple actividadSimple;
+    private ActividadSimple actividadSimple;
     private Impacto impacto;
     
     @PostConstruct
