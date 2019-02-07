@@ -35,7 +35,7 @@
             <artifactId>primefaces</artifactId>
             <version>6.2</version>
         </dependency>
-        
+        	
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
