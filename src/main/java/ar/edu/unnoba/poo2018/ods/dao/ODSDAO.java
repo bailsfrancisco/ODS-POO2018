@@ -18,45 +18,6 @@ public class ODSDAO extends AbstractDAO<ODS> {
         super(ODS.class);
     }
 
-    /* ESTO NO ES NECESARIO, TOMA LOS METODOS DEL ABSTRACT DAO
-    public List traerOds() {
-        Query query = em.createNamedQuery("ods.allODS");
-        List<ODS> ods = null;
-        try {
-            ods = query.getResultList();
-        } catch (NoResultException nre) {
-            return null;
-        }
-        return ods;
-    }
-
-    public boolean agregarOds(ODS ods) {
-        try {
-            em.persist(ods);
-        } catch (Exception ex) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean borrarOds(ODS ods) {
-        try {
-            em.remove(ods);
-        } catch (Exception ex) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean modificarOds(ODS ods) {
-        try {
-            em.merge(ods);
-        } catch (Exception ex) {
-            return false;
-        }
-        return true;
-    }*/
-
     public List<ODS> getAll() {
         Query query = em.createNamedQuery("ods.allODS");
         return query.getResultList();

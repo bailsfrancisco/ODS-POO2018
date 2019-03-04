@@ -1,10 +1,15 @@
 package ar.edu.unnoba.poo2018.ods.model;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "linea_estrategica")
+@NamedQueries({
+    @NamedQuery(name = "le.allLI",
+            query = "Select le From LineaEstrategica le"),})
 public class LineaEstrategica extends AbstractEntity{
     
     private String nombre;

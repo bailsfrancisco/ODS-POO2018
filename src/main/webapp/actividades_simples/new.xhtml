@@ -22,6 +22,31 @@
             <p:outputLabel value="#{i18n['headerExpediente']}"></p:outputLabel>
             <p:inputText value="#{actividadSimpleBacking.actividad.expediente}"/>
         </p:panelGrid>
+        
+        <p:panelGrid columns="2" >
+            <p:outputLabel value="#{i18n['convocatoria']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadSimpleBacking.convocatoria.nombre}">
+                <f:selectItems value="#{actividadSimpleBacking.convocatorias}" 
+                               var="convocatoria" itemLabel="#{convocatoria.nombre}"/>
+            </p:selectOneMenu>
+        
+        
+        
+            <p:outputLabel value="#{i18n['ambito']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadSimpleBacking.ambito.nombre}">
+                <f:selectItems value="#{actividadSimpleBacking.ambitos}" 
+                               var="ambito" itemLabel="#{ambito.nombre}"/>
+            </p:selectOneMenu>
+       
+        
+        
+            <p:outputLabel value="#{i18n['linea_estrategica']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadSimpleBacking.lineaEstrategica.nombre}">
+                <f:selectItems value="#{actividadSimpleBacking.lineasEstategicas}" 
+                               var="lineaEstrategica" itemLabel="#{lineaEstrategica.nombre}"/>
+            </p:selectOneMenu>
+        </p:panelGrid>
+        
         <p:panelGrid columns="2" >
             <p:outputLabel value="#{i18n['objetivo']}"></p:outputLabel>
             <p:selectOneMenu value="#{actividadSimpleBacking.impacto.objetivo}">
@@ -34,7 +59,7 @@
                              actionListener="#{actividadSimpleBacking.agregarImpacto()}" 
                              update="messages,actividad_impactos"/>
         </p:panelGrid>
-
+        
         <p:dataTable id="actividad_impactos" value="#{actividadSimpleBacking.actividad.impactos}" var="impacto">
             <p:column headerText="#{i18n['objetivo']}">#{impacto.objetivo}</p:column>
             <p:column headerText="#{i18n['peso']}">#{impacto.peso}</p:column>
