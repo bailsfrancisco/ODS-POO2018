@@ -15,6 +15,8 @@
             <p:inputText value="#{usuarioBacking.usuario.email}"/>
             <p:outputLabel value="#{i18n['contraseña']}"></p:outputLabel>
             <p:password value="#{usuarioBacking.usuario.password}"/>
+            <p:outputLabel value="#{i18n['esAdministrador']}"></p:outputLabel>
+            <h:selectBooleanCheckbox value = "#{usuarioBacking.usuario.admin}" id = "chkRememberMe" />
             <p:commandButton value="#{i18n['botonGuardar']}" 
                              action="#{usuarioBacking.create()}" 
                              update="messages"/>

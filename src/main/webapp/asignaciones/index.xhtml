@@ -14,14 +14,9 @@
             <p:column headerText="#{i18n['email']}">
                 <h:outputText value="#{usuario.email}"/>
             </p:column>
-            <p:column headerText="#{i18n['contraseña']}">
-                <h:outputText value="#{usuario.password}"/>
-            </p:column>
-            <p:column headerText="#{i18n['esAdministrador']}">
-                <h:outputText value="#{usuario.admin}"/>
-            </p:column>
+            
             <p:column>
-                <h:link outcome="/usuarios/edit" value="#{i18n['editar']}">
+                <h:link outcome="/asignaciones/edit" value="#{i18n['editar']}">
                     <f:param name="id" value="#{usuario.id}" />
                 </h:link>
             </p:column>

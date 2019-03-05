@@ -3,14 +3,17 @@ package ar.edu.unnoba.poo2018.ods.controller;
 import ar.edu.unnoba.poo2018.ods.dao.ActividadSimpleDAO;
 import ar.edu.unnoba.poo2018.ods.dao.AmbitoDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ConvocatoriaDAO;
+import ar.edu.unnoba.poo2018.ods.dao.ImpactoDAO;
 import ar.edu.unnoba.poo2018.ods.dao.LineaEstrategicaDAO;
 import ar.edu.unnoba.poo2018.ods.model.ActividadSimple;
 import ar.edu.unnoba.poo2018.ods.model.Impacto;
 import ar.edu.unnoba.poo2018.ods.model.ODS;
 import ar.edu.unnoba.poo2018.ods.dao.ODSDAO;
+import ar.edu.unnoba.poo2018.ods.model.Actividad;
 import ar.edu.unnoba.poo2018.ods.model.Ambito;
 import ar.edu.unnoba.poo2018.ods.model.Convocatoria;
 import ar.edu.unnoba.poo2018.ods.model.LineaEstrategica;
+import ar.edu.unnoba.poo2018.ods.model.Usuario;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +31,7 @@ public class ActividadSimpleBacking implements Serializable {
     private Ambito ambito;
     private Convocatoria convocatoria;
     private LineaEstrategica lineaEstrategica;
+    private Usuario usuario;
 
     @PostConstruct
     public void init() {
@@ -52,6 +56,9 @@ public class ActividadSimpleBacking implements Serializable {
 
     @EJB
     private AmbitoDAO ambitoDAO;
+    
+    @EJB
+    private ImpactoDAO impactoDAO;
 
     public List<ActividadSimple> getActividades() {
         return actividadSimpleDAO.getAll();
@@ -81,9 +88,32 @@ public class ActividadSimpleBacking implements Serializable {
         this.actividadSimple.getImpactos().add(impacto);
         impacto = new Impacto();
     }
+    
+    public void agregarUsuario(Usuario u) {
+        if (actividadSimple.getResponsables() == null) {
+            actividadSimple.setResponsables(new ArrayList<Usuario>());
+        }
+        this.actividadSimple.getResponsables().add(u);
+        impacto = new Impacto();
+    }
 
     public void quitarImpacto(Impacto impacto) {
         this.actividadSimple.getImpactos().remove(impacto);
+    }
+    
+    public void quitarActividad(Usuario u) {
+        this.actividadSimple.getResponsables().remove(u);
+    }
+    
+    public List<ActividadSimple> actividades(Usuario u){
+        List<ActividadSimple> actividades = this.getActividades();
+        List<ActividadSimple> actividadesUsuario = new ArrayList<>();
+        for(ActividadSimple a : actividades){
+            if(a.getResponsables().contains(u)){
+                actividadesUsuario.add(a);
+            }
+        }
+        return actividadesUsuario;
     }
 
     public String create() {
@@ -108,6 +138,25 @@ public class ActividadSimpleBacking implements Serializable {
         } catch (Exception e) {
             return null;
         }
+    }
+    
+    public float promedio(){
+        List<Impacto> impactos = impactoDAO.getAll();
+        int totalPesoImpactos = 0;
+        for(Impacto i : impactos){
+            totalPesoImpactos += i.getPeso();
+        }
+        return totalPesoImpactos;
+    }
+    public float promedioPorObjetivo(ODS ods){
+        List<Impacto> impactos = impactoDAO.getAll();
+        int totalPesoImpacto = 0;
+        for(Impacto i : impactos){
+            if(ods.getNombre().equals( i.getObjetivo().getNombre())){
+                totalPesoImpacto += i.getPeso();
+            }
+        }
+        return ((totalPesoImpacto / promedio()) * 100);
     }
 
     public void delete(ActividadSimple actividad) {

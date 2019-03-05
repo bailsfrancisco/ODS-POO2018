@@ -33,6 +33,13 @@
                                 <p:menuitem value="#{i18n['listarObjetivo']}" url="/objetivos/index.xhtml" />
                                 <p:menuitem value="#{i18n['nuevoObjetivo']}" url="/objetivos/new.xhtml" />
                             </p:submenu>
+                            <p:submenu label="#{i18n['labelAsignacion']}">
+                                <p:menuitem value="#{i18n['listarAsignacion']}" url="/asignaciones/index.xhtml" />
+                            </p:submenu>
+                            <p:submenu label="#{i18n['labelCompletitud']}">
+                                <p:menuitem value="#{i18n['listarCompletitud']}" url="/completitud/index.xhtml" />
+                            </p:submenu>
+                            
                             <f:facet name="options">
                                 <h:outputText value="#{sessionBacking.usuario.email} "/>
                                 <p:commandButton action="#{sessionBacking.logout()}" value="#{i18n['cerrarSesion']}" icon="ui-icon-extlink"></p:commandButton>
