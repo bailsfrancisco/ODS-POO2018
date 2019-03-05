@@ -29,6 +29,26 @@
         </p:panelGrid>
 
         <p:panelGrid columns="2" >
+            <p:outputLabel value="#{i18n['convocatoria']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadSimpleBacking.convocatoria}">
+                <f:selectItems value="#{actividadSimpleBacking.convocatorias}" 
+                               var="convocatoria" itemLabel="#{convocatoria.nombre}"/>
+            </p:selectOneMenu>
+
+            <p:outputLabel value="#{i18n['ambito']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadSimpleBacking.ambito}">
+                <f:selectItems value="#{actividadSimpleBacking.ambitos}" 
+                               var="ambito" itemLabel="#{ambito.nombre}"/>
+            </p:selectOneMenu>
+
+            <p:outputLabel value="#{i18n['linea_estrategica']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadSimpleBacking.lineaEstrategica}">
+                <f:selectItems value="#{actividadSimpleBacking.lineasEstategicas}" 
+                               var="lineaEstrategica" itemLabel="#{lineaEstrategica.nombre}"/>
+            </p:selectOneMenu>
+        </p:panelGrid>
+        
+        <p:panelGrid columns="2" >
             <p:outputLabel value="#{i18n['objetivo']}"></p:outputLabel>
             <p:selectOneMenu value="#{actividadSimpleBacking.impacto.objetivo}">
                 <f:selectItems value="#{actividadSimpleBacking.objetivos}" 

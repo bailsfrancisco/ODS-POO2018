@@ -28,85 +28,90 @@ public class ActividadSimpleBacking implements Serializable {
     private Ambito ambito;
     private Convocatoria convocatoria;
     private LineaEstrategica lineaEstrategica;
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         this.actividadSimple = new ActividadSimple();
         this.impacto = new Impacto();
         this.ambito = new Ambito();
         this.convocatoria = new Convocatoria();
         this.lineaEstrategica = new LineaEstrategica();
     }
-    
+
     @EJB
     private ActividadSimpleDAO actividadSimpleDAO;
-    
+
     @EJB
     private ODSDAO odsDAO;
-    
+
     @EJB
     private LineaEstrategicaDAO lineaEstrategicaDAO;
-    
+
     @EJB
     private ConvocatoriaDAO convocatoriaDAO;
-    
+
     @EJB
     private AmbitoDAO ambitoDAO;
-    
-    public List<ActividadSimple> getActividades(){
+
+    public List<ActividadSimple> getActividades() {
         return actividadSimpleDAO.getAll();
     }
-    
-    public List<Convocatoria> getConvocatorias(){
+
+    public List<Convocatoria> getConvocatorias() {
         return convocatoriaDAO.getAll();
     }
-    
-    public List<ODS> getObjetivos(){
+
+    public List<ODS> getObjetivos() {
         return odsDAO.getAll();
     }
-    
-    public List<Ambito> getAmbitos(){
+
+    public List<Ambito> getAmbitos() {
         return ambitoDAO.getAll();
     }
-    
-    public List<LineaEstrategica> getLineasEstategicas(){
+
+    public List<LineaEstrategica> getLineasEstategicas() {
         return lineaEstrategicaDAO.getAll();
     }
-    
-    public void agregarImpacto(){
+
+    public void agregarImpacto() {
         impacto.setActividad(actividadSimple);
-        if(actividadSimple.getImpactos()==null){
+        if (actividadSimple.getImpactos() == null) {
             actividadSimple.setImpactos(new ArrayList<Impacto>());
         }
         this.actividadSimple.getImpactos().add(impacto);
         impacto = new Impacto();
     }
-    
-    public void quitarImpacto(Impacto impacto){
+
+    public void quitarImpacto(Impacto impacto) {
         this.actividadSimple.getImpactos().remove(impacto);
     }
-    
-    
-    public String create(){
-        try{
+
+    public String create() {
+        try {
+            this.actividadSimple.setAmbito(this.getAmbito());
+            this.actividadSimple.setConvocatoria(this.getConvocatoria());
+            this.actividadSimple.setLineaEstrategica(this.getLineaEstrategica());
             actividadSimpleDAO.create(actividadSimple);
             return "/actividades_simples/index?faces-redirect=true";
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
-    
-    public String update(){
-        try{
-           actividadSimpleDAO.update(actividadSimple);
+
+    public String update() {
+        try {
+            this.actividadSimple.setAmbito(this.getAmbito());
+            this.actividadSimple.setConvocatoria(this.getConvocatoria());
+            this.actividadSimple.setLineaEstrategica(this.getLineaEstrategica());
+            actividadSimpleDAO.update(actividadSimple);
             return "/actividades_simples/index?faces-redirect=true";
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
-    
-    public void delete(ActividadSimple actividad){
-       actividadSimpleDAO.delete(actividad);
+
+    public void delete(ActividadSimple actividad) {
+        actividadSimpleDAO.delete(actividad);
     }
 
     public ActividadSimple getActividad() {
