@@ -13,17 +13,17 @@
         </f:metadata>
     </ui:define>
     <ui:define name="content">
-        <h2>#{i18n['headerIngresarActividad']}</h2>
+        <h2>#{i18n['headerAsignarActividad']}</h2>
         <br />     
+        
         <p:panelGrid columns="2" >
             <p:outputLabel value="#{i18n['actividad']}"></p:outputLabel>
             <p:selectOneMenu value="#{actividadSimpleBacking.actividades}">
-                <f:selectItems value="#{actividadSimpleBacking.actividades}" 
+                <f:selectItems value="#{actividadSimpleBacking.actividades}"
                                var="actividad" itemLabel="#{actividad.nombreActividad}"/>
             </p:selectOneMenu>
-
             <p:commandButton value="#{i18n['agregarActividad']}" 
-                             actionListener="#{actividadSimpleBacking.agregarUsuario(sessionBacking.usuario)}" 
+                             actionListener="#{actividadSimpleBacking.agregarUsuario(sessionBacking.usuario)}"
                              update="messages,actividad_usuario"/>
         </p:panelGrid>
 
@@ -31,7 +31,7 @@
             <p:column headerText="#{i18n['actividad']}">#{actividad.nombreActividad}</p:column>
 
         </p:dataTable>
-
+        
         <p:commandButton value="#{i18n['botonGuardar']}" 
                          action="#{actividadSimpleBacking.create()}" 
                          update="messages"/>

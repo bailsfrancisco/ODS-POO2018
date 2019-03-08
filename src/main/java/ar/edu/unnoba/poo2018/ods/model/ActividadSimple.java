@@ -20,7 +20,7 @@ import javax.persistence.OneToMany;
 })
 public class ActividadSimple extends Actividad implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "actividad")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actividad")
     private List<Impacto> impactos;
 
     public ActividadSimple() {
@@ -37,6 +37,4 @@ public class ActividadSimple extends Actividad implements Serializable {
     public void setImpactos(List<Impacto> impactos) {
         this.impactos = impactos;
     }
-    
-    
 }

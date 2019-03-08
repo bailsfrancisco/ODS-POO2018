@@ -19,7 +19,8 @@ public class SessionBacking implements Serializable {
     private String email;
     private String password;
 
-    private Usuario usuario = null;
+    private Usuario usuario;
+    //private Usuario usuario = null;
 
     @EJB
     private UsuarioDAO usuarioDAO;
