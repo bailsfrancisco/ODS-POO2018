@@ -10,7 +10,9 @@
     <ui:define name="content">
         <p:dataTable id="objetivos"
                      value="#{oDSBacking.ods}" 
-                     var="objetivo">
+                     var="objetivo"
+                     scrollable="true"
+                     scrollHeight="300">
             <p:column headerText="#{i18n['labelNombre']}">
                 <h:outputText value="#{objetivo.nombre}"/>
             </p:column>

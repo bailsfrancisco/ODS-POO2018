@@ -10,7 +10,9 @@
     <ui:define name="content">
         <p:dataTable id="actividades"
                      value="#{actividadSimpleBacking.actividades}" 
-                     var="actividad">
+                     var="actividad" 
+                     scrollable="true"
+                     scrollHeight="250">
             <p:column headerText="#{i18n['headerActividad']}">
                 <h:outputText value="#{actividad.nombreActividad}"/>
             </p:column>

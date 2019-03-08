@@ -27,7 +27,9 @@
                 <div id="content">
                     <p:dataTable id="actividades"
                                  value="#{actividadBacking.actividadesUsuario(sessionBacking.usuario)}" 
-                                 var="actividad">
+                                 var="actividad"
+                                 scrollable="true"
+                                 scrollHeight="250">
                         <p:column headerText="Actividad">
                             <h:outputText value="#{actividad.nombreActividad}"/>
                         </p:column>
