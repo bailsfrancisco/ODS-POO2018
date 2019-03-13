@@ -8,7 +8,7 @@
     
     <context-param>
         <param-name> primefaces.THEME</param-name>
-        <param-value>rocket</param-value>
+        <param-value>south-street</param-value>
     </context-param>
     
     <servlet>

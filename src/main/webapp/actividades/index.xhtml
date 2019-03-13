@@ -6,13 +6,17 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <link rel="stylesheet" type="text/css" href="resources/css/style_index.css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="css/template_css.css"/>
+        <ui:insert name="head"></ui:insert>
+        <title>
+            <ui:insert name="title">ODS</ui:insert>
+        </title>
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico"/>
     </h:head>
-    <h:body class="body">
+    <h:body>
         <f:view contentType="text/html">
             <h:form>
-                <p:growl id="messages" autoUpdate="true"></p:growl>
-
                 <div id="top">
                     <ul id="menu">
                         <p:menubar>
@@ -22,20 +26,21 @@
                             </f:facet>
                         </p:menubar>
                     </ul>
+                    <ui:insert name="top"></ui:insert>
                 </div>
-
                 <div id="content">
-                    <p:dataTable id="actividades"
-                                 value="#{actividadBacking.actividadesUsuario(sessionBacking.usuario)}" 
-                                 var="actividad"
-                                 scrollable="true"
-                                 scrollHeight="250">
-                        <p:column headerText="Actividad">
-                            <h:outputText value="#{actividad.nombreActividad}"/>
-                        </p:column>
-                    </p:dataTable>
+                    <ui:insert name="content">
+                        <p:dataTable id="actividades"
+                                     value="#{actividadBacking.actividadesUsuario(sessionBacking.usuario)}" 
+                                     var="actividad"
+                                     scrollable="true"
+                                     scrollHeight="250">
+                            <p:column headerText="#{i18n['headerActividad']}">
+                                <h:outputText value="#{actividad.nombreActividad}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </ui:insert>
                 </div>
-
                 <div id="bottom">
                     <ul>
                         <ui:insert name="bottom">Programación Orientada a Objetos 2018</ui:insert>

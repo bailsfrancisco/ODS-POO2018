@@ -8,7 +8,7 @@
                 template="./../template.xhtml">
 
     <ui:define name="content">
-        <p:panelGrid columns="2" styleClass="">
+        <p:panelGrid columns="2" layout="grid">
             <f:facet name="header">
                 <h:outputText value="#{i18n['headerNuevoUsuario']}"></h:outputText>
             </f:facet>
@@ -18,10 +18,11 @@
             <p:password value="#{usuarioBacking.usuario.password}"/>
             <p:outputLabel value="#{i18n['esAdministrador']}"></p:outputLabel>
             <h:selectBooleanCheckbox value = "#{usuarioBacking.usuario.admin}" id = "chkRememberMe" />
-            <p:commandButton value="#{i18n['botonGuardar']}" 
-                             action="#{usuarioBacking.create()}" 
-                             update="messages"/>
-            <p:button value="#{i18n['botonCancelar']}" outcome="/usuarios/index"/>
         </p:panelGrid>
+        <br/>
+        <p:commandButton value="#{i18n['botonGuardar']}" 
+                         action="#{usuarioBacking.create()}" 
+                         update="messages"/>
+        <p:button value="#{i18n['botonCancelar']}" outcome="/usuarios/index"/>
     </ui:define>
 </ui:composition>

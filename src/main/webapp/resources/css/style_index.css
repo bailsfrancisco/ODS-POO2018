@@ -1,23 +1,5 @@
-/*
-#principal{
-    background: url(../images/image3.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
-#cuadro{
-    position: fixed;
-    top: 40%;
-    bottom:35%;
-    left:20%;
-    right:0;
-    opacity: 0.8;
-    box-shadow: 0px 0px 50px #000;
-    width: 60%;
-}*/
-
 .body{
-    background: url(../images/image1.jpg);
+    background: url(../images/image_login.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -31,12 +13,7 @@
     width: 60%;
 }
 
-.panel{
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: 0px 0px 50px #000;
+.panelGrid{
+    box-shadow: 0px 0px 200px #000;
     opacity: 0.8;
-}
-
-#botonLogin{
-    background-color: blueviolet;
 }

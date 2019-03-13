@@ -66,7 +66,7 @@ public class SessionBacking implements Serializable {
             context.addMessage(null, message);
             return null;
         }
-        if (usuario.getAdmin() != true){
+        if (usuario.getAdmin() != true) {
             return "actividades/index?faces-redirect=true";
         }
         return "actividades_simples/index?faces-redirect=true";

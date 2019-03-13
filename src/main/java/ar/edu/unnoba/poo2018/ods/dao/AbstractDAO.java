@@ -20,6 +20,7 @@ public abstract class AbstractDAO<T> {
     
     public void update(T t) throws EJBException{
         em.merge(t);
+        
     }
     
     public void delete(T t) throws EJBException{

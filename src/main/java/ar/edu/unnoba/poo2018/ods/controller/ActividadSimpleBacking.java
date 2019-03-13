@@ -9,7 +9,6 @@ import ar.edu.unnoba.poo2018.ods.model.ActividadSimple;
 import ar.edu.unnoba.poo2018.ods.model.Impacto;
 import ar.edu.unnoba.poo2018.ods.model.ODS;
 import ar.edu.unnoba.poo2018.ods.dao.ODSDAO;
-import ar.edu.unnoba.poo2018.ods.model.Actividad;
 import ar.edu.unnoba.poo2018.ods.model.Ambito;
 import ar.edu.unnoba.poo2018.ods.model.Convocatoria;
 import ar.edu.unnoba.poo2018.ods.model.LineaEstrategica;
@@ -32,6 +31,7 @@ public class ActividadSimpleBacking implements Serializable {
     private Convocatoria convocatoria;
     private LineaEstrategica lineaEstrategica;
     private Usuario usuario;
+    private Impacto impacto2;
 
     @PostConstruct
     public void init() {
@@ -56,7 +56,7 @@ public class ActividadSimpleBacking implements Serializable {
 
     @EJB
     private AmbitoDAO ambitoDAO;
-    
+
     @EJB
     private ImpactoDAO impactoDAO;
 
@@ -81,6 +81,9 @@ public class ActividadSimpleBacking implements Serializable {
     }
 
     public void agregarImpacto() {
+        if (impacto2 == null) {
+            impacto2 = impacto;
+        }
         impacto.setActividad(actividadSimple);
         if (actividadSimple.getImpactos() == null) {
             actividadSimple.setImpactos(new ArrayList<Impacto>());
@@ -88,28 +91,27 @@ public class ActividadSimpleBacking implements Serializable {
         this.actividadSimple.getImpactos().add(impacto);
         impacto = new Impacto();
     }
-    
+
     public void agregarUsuario(Usuario u) {
         if (actividadSimple.getResponsables() == null) {
             actividadSimple.setResponsables(new ArrayList<Usuario>());
         }
         this.actividadSimple.getResponsables().add(u);
-        impacto = new Impacto();
+        actividadSimpleDAO.update(actividadSimple);
     }
 
     public void quitarImpacto(Impacto impacto) {
+        if (impacto2 == null) {
+            impacto2 = impacto;
+        }
         this.actividadSimple.getImpactos().remove(impacto);
     }
-    
-    public void quitarActividad(Usuario u) {
-        this.actividadSimple.getResponsables().remove(u);
-    }
-    
-    public List<ActividadSimple> actividades(Usuario u){
+
+    public List<ActividadSimple> actividades(Usuario u) {
         List<ActividadSimple> actividades = this.getActividades();
         List<ActividadSimple> actividadesUsuario = new ArrayList<>();
-        for(ActividadSimple a : actividades){
-            if(a.getResponsables().contains(u)){
+        for (ActividadSimple a : actividades) {
+            if (a.getResponsables().contains(u)) {
                 actividadesUsuario.add(a);
             }
         }
@@ -133,26 +135,28 @@ public class ActividadSimpleBacking implements Serializable {
             this.actividadSimple.setAmbito(this.getAmbito());
             this.actividadSimple.setConvocatoria(this.getConvocatoria());
             this.actividadSimple.setLineaEstrategica(this.getLineaEstrategica());
+            impactoDAO.delete(impacto2);
             actividadSimpleDAO.update(actividadSimple);
             return "/actividades_simples/index?faces-redirect=true";
         } catch (Exception e) {
             return null;
         }
     }
-    
-    public float promedio(){
+
+    public float promedio() {
         List<Impacto> impactos = impactoDAO.getAll();
         int totalPesoImpactos = 0;
-        for(Impacto i : impactos){
+        for (Impacto i : impactos) {
             totalPesoImpactos += i.getPeso();
         }
         return totalPesoImpactos;
     }
-    public float promedioPorObjetivo(ODS ods){
+
+    public float promedioPorObjetivo(ODS ods) {
         List<Impacto> impactos = impactoDAO.getAll();
         int totalPesoImpacto = 0;
-        for(Impacto i : impactos){
-            if(ods.getNombre().equals( i.getObjetivo().getNombre())){
+        for (Impacto i : impactos) {
+            if (ods.getNombre().equals(i.getObjetivo().getNombre())) {
                 totalPesoImpacto += i.getPeso();
             }
         }

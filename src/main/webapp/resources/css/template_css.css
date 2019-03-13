@@ -16,11 +16,10 @@ img{
 }
 
 #top {
-    width: 100%;
-    height: 100%;
+    width: auto;
     position: relative;
     background:url("../../resources/images/image1.jpg");
-    background-color: #045491;
+    background-color: #3b930c;
     background-repeat:no-repeat;
     background-size: cover;
     background-position: center;
@@ -29,26 +28,37 @@ img{
 
 #menu { 
     clear: both;
-    padding: 320px 0 0;
+    padding: 20% 1% 1%;
 }
 
 #bottom { 
     clear:both;
     color:#fff;
     text-align:left;
-    background-color:#045491;
+    background-color:#3b930c;
     position:fixed;
     top: 90%;
     bottom:0;
     left:0;
     right:0;
-    width:100%;
+    width:auto;
 }
 
-#bottom ul {  width: 100%; text-align: center; padding:40px;}
+#bottom ul {  
+    width: auto;
+    text-align: center; 
+    padding: 40px;
+}
 
 #content{
-    width: 100%;
-    height: 100%;
-    text-align: center;
+    width: auto;
+    text-align: left;
+    padding-top: 3%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 110px;
+}
+
+.ui-panelgrid .ui-grid-responsive .ui-panelgrid-cell {
+    text-align: left;
 }

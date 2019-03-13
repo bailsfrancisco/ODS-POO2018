@@ -13,9 +13,10 @@
         </f:metadata>
     </ui:define>
     <ui:define name="content">
-        <h2>#{i18n['headerUsuarios']}</h2>
-        <br/>
         <p:panelGrid columns="2" styleClass="">
+            <f:facet name="header">
+                <h:outputText value="#{i18n['headerUsuarios']}"></h:outputText>
+            </f:facet>
             <p:outputLabel value="#{i18n['email']}"></p:outputLabel>
             <p:inputText value="#{usuarioBacking.usuario.email}"/>
             <p:outputLabel value="#{i18n['contraseña']}"></p:outputLabel>

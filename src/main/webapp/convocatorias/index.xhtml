@@ -8,26 +8,26 @@
                 template="./../template.xhtml">
 
     <ui:define name="content">
-        <p:dataTable id="objetivos"
-                     value="#{oDSBacking.ods}" 
-                     var="objetivo"
+        <p:dataTable id="convocatorias"
+                     value="#{convocatoriaBacking.convocatorias}" 
+                     var="convocatoria"
                      scrollable="true"
                      scrollHeight="300">
             <p:column headerText="#{i18n['labelNombre']}">
-                <h:outputText value="#{objetivo.nombre}"/>
+                <h:outputText value="#{convocatoria.nombre}"/>
             </p:column>
             <p:column>
-                <h:link outcome="/objetivos/edit" value="#{i18n['editar']}">
-                    <f:param name="id" value="#{objetivo.id}" />
+                <h:link outcome="/convocatorias/edit" value="#{i18n['editar']}">
+                    <f:param name="id" value="#{convocatoria.id}" />
                 </h:link>
             </p:column>
-            
+
             <p:column>
-                <p:commandLink actionListener="#{oDSBacking.delete(objetivo)}" 
+                <p:commandLink actionListener="#{convocatoriaBacking.delete(convocatoria)}" 
                                value="#{i18n['linkQuitar']}"
-                               update="objetivos">
+                               update="convocatorias">
                     <p:confirm header="#{i18n['headerConfirmacion']}" 
-                               message="#{i18n['mensajeEliminarObjetivo']} #{objetivo.nombre}?" 
+                               message="#{i18n['mensajeEliminarConvocatoria']} #{convocatoria.nombre}?" 
                                icon="ui-icon-alert" />
                 </p:commandLink>
             </p:column>

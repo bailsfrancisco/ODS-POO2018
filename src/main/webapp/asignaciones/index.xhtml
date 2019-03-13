@@ -22,18 +22,7 @@
                     <f:param name="id" value="#{usuario.id}" />
                 </h:link>
             </p:column>
-            <!--p:column-->
-                <!--p:commandLink actionListener="#{usuarioBacking.delete(usuario)}" 
-                               value="#{i18n['linkQuitar']}"
-                               update="usuarios"-->
-                    <!--p:confirm header="#{i18n['headerConfirmacion']}" 
-                               message="#{i18n['mensajeEliminarUsuario']} #{usuario.email}?" 
-                               icon="ui-icon-alert" /-->
-            <!--/p:commandLink-->
-            <!--/p:column-->
         </p:dataTable>
-
-
         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
             <p:commandButton value="#{i18n['si']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
             <p:commandButton value="#{i18n['no']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />

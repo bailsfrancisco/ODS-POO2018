@@ -8,16 +8,17 @@
                 template="./../template.xhtml">
 
     <ui:define name="content">
-        <p:panelGrid columns="2" styleClass="">
+        <p:panelGrid columns="2" layout="grid">
             <f:facet name="header">
                 <h:outputText value="#{i18n['headerNuevoObjetivo']}"></h:outputText>
             </f:facet>
             <p:outputLabel value="#{i18n['labelNombre']}"></p:outputLabel>
             <p:inputText value="#{oDSBacking.ODS.nombre}"/>
-            <p:commandButton value="#{i18n['botonGuardar']}" 
-                             action="#{oDSBacking.create()}" 
-                             update="messages"/>
-            <p:button value="#{i18n['botonCancelar']}" outcome="/objetivos/index"/>
         </p:panelGrid>
+        <br/>
+        <p:commandButton value="#{i18n['botonGuardar']}" 
+                         action="#{oDSBacking.create()}" 
+                         update="messages"/>
+        <p:button value="#{i18n['botonCancelar']}" outcome="/objetivos/index"/>
     </ui:define>
 </ui:composition>
