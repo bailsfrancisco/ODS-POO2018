@@ -7,10 +7,11 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="./../template.xhtml">
 
-    <ui:define name="content">
-        <h2>#{i18n['headerIngresarActividad']}</h2>
-        <br />
-        <p:panelGrid columns="2" styleClass="">
+    <ui:define name="content" >
+        <p:panelGrid columns="2" layout="grid">
+            <f:facet name="header">
+                <h:outputText value="#{i18n['headerIngresarActividad']}"></h:outputText>
+            </f:facet>
             <p:outputLabel value="#{i18n['nombreActividad']}"></p:outputLabel>
             <p:inputText value="#{actividadSimpleBacking.actividad.nombreActividad}"/>
             <p:outputLabel value="#{i18n['headerFechaI']}"></p:outputLabel>
@@ -21,8 +22,21 @@
             <p:inputText value="#{actividadSimpleBacking.actividad.resolucion}"/>
             <p:outputLabel value="#{i18n['headerExpediente']}"></p:outputLabel>
             <p:inputText value="#{actividadSimpleBacking.actividad.expediente}"/>
-        </p:panelGrid>
-        <p:panelGrid columns="2" >
+            <p:outputLabel value="#{i18n['convocatoria']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadSimpleBacking.convocatoria}">
+                <f:selectItems value="#{actividadSimpleBacking.convocatorias}" 
+                               var="convocatoria" itemLabel="#{convocatoria.nombre}"/>
+            </p:selectOneMenu>
+            <p:outputLabel value="#{i18n['ambito']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadSimpleBacking.ambito}">
+                <f:selectItems value="#{actividadSimpleBacking.ambitos}" 
+                               var="ambito" itemLabel="#{ambito.nombre}"/>
+            </p:selectOneMenu>
+            <p:outputLabel value="#{i18n['linea_estrategica']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadSimpleBacking.lineaEstrategica}">
+                <f:selectItems value="#{actividadSimpleBacking.lineasEstategicas}" 
+                               var="lineaEstrategica" itemLabel="#{lineaEstrategica.nombre}"/>
+            </p:selectOneMenu>
             <p:outputLabel value="#{i18n['objetivo']}"></p:outputLabel>
             <p:selectOneMenu value="#{actividadSimpleBacking.impacto.objetivo}">
                 <f:selectItems value="#{actividadSimpleBacking.objetivos}" 
@@ -34,8 +48,9 @@
                              actionListener="#{actividadSimpleBacking.agregarImpacto()}" 
                              update="messages,actividad_impactos"/>
         </p:panelGrid>
-
-        <p:dataTable id="actividad_impactos" value="#{actividadSimpleBacking.actividad.impactos}" var="impacto">
+        <br/>
+        <p:dataTable id="actividad_impactos" value="#{actividadSimpleBacking.actividad.impactos}" var="impacto" scrollable="true"
+                     scrollHeight="100">
             <p:column headerText="#{i18n['objetivo']}">#{impacto.objetivo}</p:column>
             <p:column headerText="#{i18n['peso']}">#{impacto.peso}</p:column>
             <p:column>
@@ -43,7 +58,6 @@
                                value="#{i18n['linkQuitar']}" update="actividad_impactos"/>
             </p:column>
         </p:dataTable>
-
         <p:commandButton value="#{i18n['botonGuardar']}" 
                          action="#{actividadSimpleBacking.create()}" 
                          update="messages"/>

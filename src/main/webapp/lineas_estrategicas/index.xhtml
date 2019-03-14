@@ -8,33 +8,30 @@
                 template="./../template.xhtml">
 
     <ui:define name="content">
-        <p:dataTable id="usuarios" value="#{usuarioBacking.usuarios}" var="usuario" scrollable="true" scrollHeight="250">
-            <p:column headerText="#{i18n['email']}">
-                <h:outputText value="#{usuario.email}"/>
-            </p:column>
-            <p:column headerText="#{i18n['contraseña']}">
-                <h:outputText value="#{usuario.password}"/>
-            </p:column>
-            <p:column headerText="#{i18n['esAdministrador']}">
-                <h:outputText value="#{usuario.admin}"/>
+        <p:dataTable id="lineas_estrategicas"
+                     value="#{lineaEstrategiaBacking.lineaEstrategica}" 
+                     var="linea_estrategica"
+                     scrollable="true"
+                     scrollHeight="300">
+            <p:column headerText="#{i18n['labelNombre']}">
+                <h:outputText value="#{linea_estrategica.nombre}"/>
             </p:column>
             <p:column>
-                <h:link outcome="/usuarios/edit" value="#{i18n['editar']}">
-                    <f:param name="id" value="#{usuario.id}" />
+                <h:link outcome="/lineas_estrategicas/edit" value="#{i18n['editar']}">
+                    <f:param name="id" value="#{linea_estrategica.id}" />
                 </h:link>
             </p:column>
+            
             <p:column>
-                <p:commandLink actionListener="#{usuarioBacking.delete(usuario)}" 
+                <p:commandLink actionListener="#{lineaEstrategiaBacking.delete(linea_estrategica)}" 
                                value="#{i18n['linkQuitar']}"
-                               update="usuarios">
+                               update="lineas_estrategicas">
                     <p:confirm header="#{i18n['headerConfirmacion']}" 
-                               message="#{i18n['mensajeEliminarUsuario']} #{usuario.email}?" 
+                               message="#{i18n['mensajeEliminarLineaEstrategica']} #{linea_estrategica.nombre}?" 
                                icon="ui-icon-alert" />
                 </p:commandLink>
             </p:column>
         </p:dataTable>
-
-
         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
             <p:commandButton value="#{i18n['si']}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
             <p:commandButton value="#{i18n['no']}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />

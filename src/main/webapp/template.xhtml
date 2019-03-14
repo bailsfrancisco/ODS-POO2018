@@ -8,42 +8,67 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="/resources/css/style_index.css"/>
+        <h:outputStylesheet name="css/template_css.css"/>
+
         <ui:insert name="head"></ui:insert>
         <title>
             <ui:insert name="title">ODS</ui:insert>
         </title>
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico"/>
     </h:head>
     <h:body>
         <f:view contentType="text/html">
             <h:form>
                 <p:growl id="messages" autoUpdate="true"></p:growl>
                 <div id="top">
-                    <p:menubar>
-                        <p:submenu label="#{i18n['labelUsuarios']}">
-                            <p:menuitem value="#{i18n['listarUsuarios']}" url="/usuarios/index.xhtml" />
-                            <p:menuitem value="#{i18n['nuevoUsuario']}" url="/usuarios/new.xhtml" />
-                        </p:submenu>
-                        <p:submenu label="#{i18n['labelActividad']}">
-                            <p:menuitem value="#{i18n['listarActividad']}" url="/actividades_simples/index.xhtml" />
-                            <p:menuitem value="#{i18n['nuevaActividad']}" url="/actividades_simples/new.xhtml" />
-                        </p:submenu>
-                        <p:submenu label="#{i18n['labelObjetivo']}">
-                            <p:menuitem value="#{i18n['listarObjetivo']}" url="/objetivos/index.xhtml" />
-                            <p:menuitem value="#{i18n['nuevoObjetivo']}" url="/objetivos/new.xhtml" />
-                        </p:submenu>
-                        <f:facet name="options">
-                            <h:outputText value="#{sessionBacking.usuario.email} "/>
-                            <p:commandButton action="#{sessionBacking.logout()}" value="#{i18n['cerrarSesion']}" icon="ui-icon-extlink"></p:commandButton>
-                        </f:facet>
-                    </p:menubar>
+                    <ul id="menu">
+                        <p:menubar>
+                            <p:submenu label="#{i18n['labelUsuarios']}">
+                                <p:menuitem value="#{i18n['listarUsuarios']}" url="/usuarios/index.xhtml" />
+                                <p:menuitem value="#{i18n['nuevoUsuario']}" url="/usuarios/new.xhtml" />
+                            </p:submenu>
+                            <p:submenu label="#{i18n['labelActividad']}">
+                                <p:menuitem value="#{i18n['listarActividad']}" url="/actividades_simples/index.xhtml" />
+                                <p:menuitem value="#{i18n['nuevaActividad']}" url="/actividades_simples/new.xhtml" />
+                            </p:submenu>
+                            <p:submenu label="#{i18n['labelObjetivo']}">
+                                <p:menuitem value="#{i18n['listarObjetivo']}" url="/objetivos/index.xhtml" />
+                                <p:menuitem value="#{i18n['nuevoObjetivo']}" url="/objetivos/new.xhtml" />
+                            </p:submenu>
+                            <p:submenu label="#{i18n['labelAmbito']}">
+                                <p:menuitem value="#{i18n['listarAmbito']}" url="/ambitos/index.xhtml" />
+                                <p:menuitem value="#{i18n['nuevoAmbito']}" url="/ambitos/new.xhtml" />
+                            </p:submenu>
+                            <p:submenu label="#{i18n['labelConvocatoria']}">
+                                <p:menuitem value="#{i18n['listarConvocatoria']}" url="/convocatorias/index.xhtml" />
+                                <p:menuitem value="#{i18n['nuevaConvocatoria']}" url="/convocatorias/new.xhtml" />
+                            </p:submenu>
+                            <p:submenu label="#{i18n['labelLinea_Estrategica']}">
+                                <p:menuitem value="#{i18n['listarLinea_Estrategica']}" url="/lineas_estrategicas/index.xhtml" />
+                                <p:menuitem value="#{i18n['nuevaLinea_Estrategica']}" url="/lineas_estrategicas/new.xhtml" />
+                            </p:submenu>
+                            <p:submenu label="#{i18n['labelAsignacion']}">
+                                <p:menuitem value="#{i18n['listarAsignacion']}" url="/asignaciones/index.xhtml" />
+                            </p:submenu>
+                            <p:submenu label="#{i18n['labelCompletitud']}">
+                                <p:menuitem value="#{i18n['listarCompletitud']}" url="/completitud/index.xhtml" />
+                            </p:submenu>
+
+                            <f:facet name="options">
+                                <h:outputText value="#{sessionBacking.usuario.email} "/>
+                                <p:commandButton action="#{sessionBacking.logout()}" value="#{i18n['cerrarSesion']}" icon="ui-icon-extlink"></p:commandButton>
+                            </f:facet>
+                        </p:menubar>
+                    </ul>
                     <ui:insert name="top"></ui:insert>
                 </div>
-                <div id="content" class="center_content">
+                <div id="content">
                     <ui:insert name="content"></ui:insert>
                 </div>
                 <div id="bottom">
-                    <ui:insert name="bottom"></ui:insert>
+                    <ul>
+                        <ui:insert name="bottom">Programación Orientada a Objetos 2018</ui:insert>
+                    </ul>
                 </div>
             </h:form>
         </f:view>

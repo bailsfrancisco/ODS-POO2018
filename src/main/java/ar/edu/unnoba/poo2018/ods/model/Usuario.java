@@ -1,5 +1,6 @@
 package ar.edu.unnoba.poo2018.ods.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -24,7 +25,15 @@ public class Usuario extends AbstractEntity {
     @ManyToMany(mappedBy = "responsables")
     private List<Actividad> actividades;
 
-    public Usuario() {
+    public List<Actividad> getActividades() {
+        return actividades;
+    }
+
+    public void setActividades(List<Actividad> actividades) {
+        this.actividades = actividades;
+    }
+
+    public Usuario(){
     }
 
     public Usuario(String email, String password) {

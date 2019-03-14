@@ -1,0 +1,64 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+:focus,:active {
+    outline:0
+}
+
+ul,ol{
+    list-style:none
+}
+
+img{
+    border:0
+}
+
+#top {
+    width: auto;
+    position: relative;
+    background:url("../../resources/images/image1.jpg");
+    background-color: #3b930c;
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position: center;
+    color:#ccc;
+}
+
+#menu { 
+    clear: both;
+    padding: 20% 1% 1%;
+}
+
+#bottom { 
+    clear:both;
+    color:#fff;
+    text-align:left;
+    background-color:#3b930c;
+    position:fixed;
+    top: 90%;
+    bottom:0;
+    left:0;
+    right:0;
+    width:auto;
+}
+
+#bottom ul {  
+    width: auto;
+    text-align: center; 
+    padding: 40px;
+}
+
+#content{
+    width: auto;
+    text-align: left;
+    padding-top: 3%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 110px;
+}
+
+.ui-panelgrid .ui-grid-responsive .ui-panelgrid-cell {
+    text-align: left;
+}

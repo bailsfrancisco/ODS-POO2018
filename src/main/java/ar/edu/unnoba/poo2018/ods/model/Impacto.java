@@ -3,10 +3,15 @@ package ar.edu.unnoba.poo2018.ods.model;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "impacto")
+@NamedQueries({
+    @NamedQuery(name = "impacto.allImpactos",
+            query = "Select i From Impacto i"),})
 public class Impacto extends AbstractEntity {
 
     private Integer peso;

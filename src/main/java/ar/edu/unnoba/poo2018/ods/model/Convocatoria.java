@@ -1,10 +1,15 @@
 package ar.edu.unnoba.poo2018.ods.model;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "convocatoria")
+@NamedQueries({
+    @NamedQuery(name = "c.allConvocatorias",
+            query = "Select c From Convocatoria c"),})
 public class Convocatoria extends AbstractEntity{
     
     private String nombre;

@@ -10,7 +10,9 @@
     <ui:define name="content">
         <p:dataTable id="objetivos"
                      value="#{oDSBacking.ods}" 
-                     var="objetivo">
+                     var="objetivo"
+                     scrollable="true"
+                     scrollHeight="300">
             <p:column headerText="#{i18n['labelNombre']}">
                 <h:outputText value="#{objetivo.nombre}"/>
             </p:column>
@@ -25,7 +27,7 @@
                                value="#{i18n['linkQuitar']}"
                                update="objetivos">
                     <p:confirm header="#{i18n['headerConfirmacion']}" 
-                               message="#{i18n['mensajeEliminarUsuario']} #{objetivo.nombre}?" 
+                               message="#{i18n['mensajeEliminarObjetivo']} #{objetivo.nombre}?" 
                                icon="ui-icon-alert" />
                 </p:commandLink>
             </p:column>

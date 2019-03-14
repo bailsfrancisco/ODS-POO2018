@@ -9,29 +9,27 @@
     <h:head>
         <title> #{i18n['login']}</title>
         <link rel="stylesheet" type="text/css" href="resources/css/style_index.css"/>
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon_login.ico"/>
     </h:head>
-    <h:body id="principal">
-        <div id="cuadro">
+    <h:body class="body">
+        <div class="div">
             <h:form>
-                <p:panel id="panel" header="#{i18n['IngreseSusDatos']}">
-                    <p:growl id="messages" autoUpdate="true"/>
-                    <p:panelGrid columns="2" layout="grid">
-                        <p:outputLabel value="#{i18n['labelEmail']}">
-                        </p:outputLabel>
-
-                        <p:inputText id="email" value="#{sessionBacking.email}" required="true" validatorMessage="#{i18n['invalidEmail']}">
-                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
-                            <p:clientValidator />
-                            <p:message for="email"/>
-                        </p:inputText>
-
-
-                        <p:outputLabel value="#{i18n['labelPassword']}"></p:outputLabel>
-                        <p:password value="#{sessionBacking.password}"/>
-                        <h:column/>
-                        <p:commandButton icon="ui-icon-key" value="#{i18n['botonIngresar']}" action="#{sessionBacking.login()}" update="messages"/>
-                    </p:panelGrid>
-                </p:panel>
+                <p:growl id="messages" autoUpdate="true"/>
+                <p:panelGrid id="panelGrid" class="panelGrid" columns="2" layout="grid">
+                    <f:facet name="header">
+                        <h:outputText value="#{i18n['IngreseSusDatos']}"></h:outputText>
+                    </f:facet>
+                    <p:outputLabel for="@next" value="#{i18n['labelEmail']}"/>
+                    <p:inputText placeholder="Ingrese su email" id="email" value="#{sessionBacking.email}" required="true" validatorMessage="#{i18n['invalidEmail']}">
+                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                        <p:clientValidator />
+                        <p:message for="email"/>
+                    </p:inputText>
+                    <p:outputLabel value="#{i18n['labelPassword']}"></p:outputLabel>
+                    <p:password placeholder="Ingrese su contraseña" value="#{sessionBacking.password}"/>
+                    <h:column/>
+                    <p:commandButton id="botonLogin" icon="ui-icon-key" value="#{i18n['botonIngresar']}" action="#{sessionBacking.login()}" update="messages" />
+                </p:panelGrid>
             </h:form>
         </div>
     </h:body>

@@ -1,22 +1,24 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui"
-    template="./../template.xhtml">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../template.xhtml">
 
     <ui:define name="content">
-        <h2>#{i18n['headerNuevoObjetivo']}</h2>
-        <br />
-        <p:panelGrid columns="2" styleClass="">
+        <p:panelGrid columns="2" layout="grid">
+            <f:facet name="header">
+                <h:outputText value="#{i18n['headerNuevoObjetivo']}"></h:outputText>
+            </f:facet>
             <p:outputLabel value="#{i18n['labelNombre']}"></p:outputLabel>
             <p:inputText value="#{oDSBacking.ODS.nombre}"/>
-            <p:commandButton value="#{i18n['botonGuardar']}" 
-                             action="#{oDSBacking.create()}" 
-                             update="messages"/>
-            <p:button value="#{i18n['botonCancelar']}" outcome="/objetivos/index"/>
         </p:panelGrid>
+        <br/>
+        <p:commandButton value="#{i18n['botonGuardar']}" 
+                         action="#{oDSBacking.create()}" 
+                         update="messages"/>
+        <p:button value="#{i18n['botonCancelar']}" outcome="/objetivos/index"/>
     </ui:define>
 </ui:composition>

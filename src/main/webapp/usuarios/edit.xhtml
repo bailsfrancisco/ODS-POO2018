@@ -13,13 +13,16 @@
         </f:metadata>
     </ui:define>
     <ui:define name="content">
-        <h2>#{i18n['headerUsuarios']}</h2>
-        <br/>
         <p:panelGrid columns="2" styleClass="">
+            <f:facet name="header">
+                <h:outputText value="#{i18n['headerUsuarios']}"></h:outputText>
+            </f:facet>
             <p:outputLabel value="#{i18n['email']}"></p:outputLabel>
             <p:inputText value="#{usuarioBacking.usuario.email}"/>
             <p:outputLabel value="#{i18n['contraseña']}"></p:outputLabel>
             <p:password value="#{usuarioBacking.usuario.password}"/>
+            <p:outputLabel value="#{i18n['esAdministrador']}"></p:outputLabel>
+            <h:selectBooleanCheckbox value = "#{usuarioBacking.usuario.admin}" id = "chkRememberMe" />
             <p:commandButton value="#{i18n['botonActualizar']}" 
                              action="#{usuarioBacking.update()}" 
                              update="messages"/>

@@ -7,23 +7,18 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="./../template.xhtml">
 
-    <ui:define name="head">
-        <f:metadata>
-            <f:viewParam name="id" value="#{oDSBacking.ODS}"/>
-        </f:metadata>
-    </ui:define>
     <ui:define name="content">
         <p:panelGrid columns="2" layout="grid">
             <f:facet name="header">
-                <h:outputText value="#{i18n['headerEditarObjetivo']}"></h:outputText>
+                <h:outputText value="#{i18n['headerNuevaLineaEstrategica']}"></h:outputText>
             </f:facet>
             <p:outputLabel value="#{i18n['labelNombre']}"></p:outputLabel>
-            <p:inputText value="#{oDSBacking.ODS.nombre}"/>
+            <p:inputText value="#{lineaEstrategiaBacking.linea_estrategica.nombre}"/>
         </p:panelGrid>
         <br/>
-        <p:commandButton value="#{i18n['botonActualizar']}" 
-                         action="#{oDSBacking.update()}" 
+        <p:commandButton value="#{i18n['botonGuardar']}" 
+                         action="#{lineaEstrategiaBacking.create()}" 
                          update="messages"/>
-        <p:button value="#{i18n['botonCancelar']}" outcome="/objetivos/index"/>
+        <p:button value="#{i18n['botonCancelar']}" outcome="/lineas_estrategicas/index"/>
     </ui:define>
 </ui:composition>

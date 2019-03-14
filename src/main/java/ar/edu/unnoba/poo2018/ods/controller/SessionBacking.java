@@ -19,7 +19,8 @@ public class SessionBacking implements Serializable {
     private String email;
     private String password;
 
-    private Usuario usuario = null;
+    private Usuario usuario;
+    //private Usuario usuario = null;
 
     @EJB
     private UsuarioDAO usuarioDAO;
@@ -65,7 +66,9 @@ public class SessionBacking implements Serializable {
             context.addMessage(null, message);
             return null;
         }
-        //return "welcome?faces-redirect=true";
+        if (usuario.getAdmin() != true) {
+            return "actividades/index?faces-redirect=true";
+        }
         return "actividades_simples/index?faces-redirect=true";
     }
 

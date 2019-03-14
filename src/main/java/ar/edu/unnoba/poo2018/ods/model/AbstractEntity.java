@@ -20,7 +20,7 @@ public class AbstractEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     public Long getId() {
         return id;
@@ -54,5 +54,11 @@ public class AbstractEntity implements Serializable {
         } else {
             return false;
         }
+    }
+
+    
+    @Override
+    public String toString() {
+        return "AbstractEntity{" + "id=" + id + '}';
     }
 }

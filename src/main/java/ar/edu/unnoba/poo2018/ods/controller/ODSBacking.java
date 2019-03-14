@@ -1,5 +1,6 @@
 package ar.edu.unnoba.poo2018.ods.controller;
 
+import ar.edu.unnoba.poo2018.ods.dao.ImpactoDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ODSDAO;
 import ar.edu.unnoba.poo2018.ods.model.ODS;
 import java.io.Serializable;
@@ -32,6 +33,9 @@ public class ODSBacking implements Serializable {
 
     @EJB
     private ODSDAO odsDAO;
+    
+    @EJB
+    private ImpactoDAO impactoDAO;
 
     public List<ODS> getOds() {
         return odsDAO.getAll();
@@ -54,7 +58,7 @@ public class ODSBacking implements Serializable {
             return null;
         }
     }
-
+    
     public void delete(ODS ods) {
         try {
             odsDAO.delete(ods);

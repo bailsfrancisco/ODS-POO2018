@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ar.edu.unnoba.poo2018.ods.dao;
 
 import ar.edu.unnoba.poo2018.ods.model.Impacto;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
-/**
- *
- * @author bailsfrancisco
- */
 @Stateless
 public class ImpactoDAO extends AbstractDAO<Impacto>{
     
@@ -19,4 +12,8 @@ public class ImpactoDAO extends AbstractDAO<Impacto>{
         super(Impacto.class);
     }
     
+    public List<Impacto> getAll() {
+        Query query = em.createNamedQuery("impacto.allImpactos");
+        return query.getResultList();
+    }
 }
