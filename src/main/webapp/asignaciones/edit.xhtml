@@ -23,7 +23,7 @@
                                var="actividad" itemLabel="#{actividad.nombreActividad}"/>
             </p:selectOneMenu>
             <p:commandButton value="#{i18n['agregarActividad']}" 
-                             actionListener="#{actividadSimpleBacking.agregarUsuario(usuarioBacking.usuario)}"
+                             actionListener="#{actividadSimpleBacking.asignarActividad_a_Usuario(actividadSimpleBacking.actividad,usuarioBacking.usuario)}"
                              update="messages,actividad_usuario"/>
         </p:panelGrid>
         <br/>
@@ -31,16 +31,13 @@
                      scrollHeight="100">
             <p:column headerText="#{i18n['actividad']}">#{actividad.nombreActividad}</p:column>
             <p:column>
-                <p:commandLink actionListener="#{actividadSimpleBacking.quitarUsuario(usuarioBacking.usuario)}" 
+                <p:commandLink actionListener="#{actividadSimpleBacking.quitarActividad_a_Usuario(actividad, usuarioBacking.usuario)}" 
                                value="#{i18n['linkQuitar']}" update="actividad_usuario"/>
             </p:column>
         </p:dataTable>
-
-
-        <p:button value="#{i18n['botonGuardar']}" outcome="/asignaciones/index"/>
-        <!--p:commandButton value="#{i18n['botonGuardar']}" 
-                         action="#{actividadSimpleBacking.create()}" 
-                         update="messages"/-->
+        <p:commandButton value="#{i18n['botonGuardar']}" 
+                         action="#{actividadSimpleBacking.agregarUsuario(usuarioBacking.usuario, actividad)}" 
+                         update="messages"/>
         <p:button value="#{i18n['botonCancelar']}" outcome="/asignaciones/index"/>
     </ui:define>
 </ui:composition>

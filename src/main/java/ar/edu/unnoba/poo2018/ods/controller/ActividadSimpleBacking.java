@@ -1,5 +1,6 @@
 package ar.edu.unnoba.poo2018.ods.controller;
 
+import ar.edu.unnoba.poo2018.ods.dao.ActividadDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ActividadSimpleDAO;
 import ar.edu.unnoba.poo2018.ods.dao.AmbitoDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ConvocatoriaDAO;
@@ -9,6 +10,7 @@ import ar.edu.unnoba.poo2018.ods.model.ActividadSimple;
 import ar.edu.unnoba.poo2018.ods.model.Impacto;
 import ar.edu.unnoba.poo2018.ods.model.ODS;
 import ar.edu.unnoba.poo2018.ods.dao.ODSDAO;
+import ar.edu.unnoba.poo2018.ods.dao.UsuarioDAO;
 import ar.edu.unnoba.poo2018.ods.model.Ambito;
 import ar.edu.unnoba.poo2018.ods.model.Convocatoria;
 import ar.edu.unnoba.poo2018.ods.model.LineaEstrategica;
@@ -26,12 +28,17 @@ import javax.faces.bean.ViewScoped;
 public class ActividadSimpleBacking implements Serializable {
 
     private ActividadSimple actividadSimple;
+    private ActividadSimple actividadSimple2;
+
+    private Usuario usuario;
+    private Usuario usuario2;
+
     private Impacto impacto;
+    private Impacto impacto2;
+
     private Ambito ambito;
     private Convocatoria convocatoria;
     private LineaEstrategica lineaEstrategica;
-    private Usuario usuario;
-    private Impacto impacto2;
 
     @PostConstruct
     public void init() {
@@ -60,6 +67,12 @@ public class ActividadSimpleBacking implements Serializable {
     @EJB
     private ImpactoDAO impactoDAO;
 
+    @EJB
+    private UsuarioDAO usuarioDAO;
+
+    @EJB
+    private ActividadDAO actividadDAO;
+
     public List<ActividadSimple> getActividades() {
         return actividadSimpleDAO.getAll();
     }
@@ -80,6 +93,21 @@ public class ActividadSimpleBacking implements Serializable {
         return lineaEstrategicaDAO.getAll();
     }
 
+    /*BOTON GUARDAR ANDA, GUARDA EN LA BD Y VUELVE AL INDEX DE ASIGNACIONES*/
+    public String agregarUsuario(Usuario u, ActividadSimple a) {
+        if (actividadSimple.getResponsables() == null) {
+            actividadSimple.setResponsables(new ArrayList<Usuario>());
+        }
+        this.actividadSimple.getResponsables().add(u);
+        try {
+            actividadSimpleDAO.update(actividadSimple);
+            return "/asignaciones/index?faces-redirect=true";
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /*Agrega impactos a la tabla en memoria*/
     public void agregarImpacto() {
         if (impacto2 == null) {
             impacto2 = impacto;
@@ -92,14 +120,6 @@ public class ActividadSimpleBacking implements Serializable {
         impacto = new Impacto();
     }
 
-    public void agregarUsuario(Usuario u) {
-        if (actividadSimple.getResponsables() == null) {
-            actividadSimple.setResponsables(new ArrayList<Usuario>());
-        }
-        this.actividadSimple.getResponsables().add(u);
-        actividadSimpleDAO.update(actividadSimple);
-    }
-
     public void quitarImpacto(Impacto impacto) {
         if (impacto2 == null) {
             impacto2 = impacto;
@@ -107,7 +127,31 @@ public class ActividadSimpleBacking implements Serializable {
         this.actividadSimple.getImpactos().remove(impacto);
     }
 
-    public List<ActividadSimple> actividades(Usuario u) {
+    /*ANDA Asigna una actividad a usuario en la tabla en la vista, luego
+      el boton guardar lo guarda en la BD*/
+    public void asignarActividad_a_Usuario(ActividadSimple a, Usuario u) {
+        if (actividadSimple2 == null && usuario2 == null) {
+            actividadSimple2 = a;
+            usuario2 = u;
+        }
+        u.getActividades().add(a);
+    }
+
+    /* ANDA Quita una actividad de un usuario de la tabla en la vista, 
+    al poner guardar deberia eliminarse la que se quito de la tabla 
+    pero no anda eso*/
+    public void quitarActividad_a_Usuario(ActividadSimple a, Usuario u) {
+        if (actividadSimple2 == null && usuario2 == null) {
+            actividadSimple2 = a;
+            usuario2 = u;
+        }
+        u.getActividades().remove(a);
+    }
+
+    /*ESTO DEVUELVE LA LISTA DE LAS ACTIVIDADES QUE TIENE UN USUARIO
+    Es lo mismo que en la dataTable hacer referencia a las actividades de un
+    usuario.
+    public List<ActividadSimple> actividades_usuario(Usuario u) {
         List<ActividadSimple> actividades = this.getActividades();
         List<ActividadSimple> actividadesUsuario = new ArrayList<>();
         for (ActividadSimple a : actividades) {
@@ -116,8 +160,7 @@ public class ActividadSimpleBacking implements Serializable {
             }
         }
         return actividadesUsuario;
-    }
-
+    }*/
     public String create() {
         try {
             this.actividadSimple.setAmbito(this.getAmbito());
@@ -205,5 +248,13 @@ public class ActividadSimpleBacking implements Serializable {
 
     public void setLineaEstrategica(LineaEstrategica lineaEstrategica) {
         this.lineaEstrategica = lineaEstrategica;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
