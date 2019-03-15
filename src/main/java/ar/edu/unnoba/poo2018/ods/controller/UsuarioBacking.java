@@ -12,44 +12,43 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class UsuarioBacking implements Serializable {
-    
+
     private Usuario usuario;
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         this.usuario = new Usuario();
     }
-    
+
     @EJB
     private UsuarioDAO usuarioDAO;
-    
+
     //@Inject
     //private SessionBacking sessionBacking;
-    
-    public List<Usuario> getUsuarios(){
+    public List<Usuario> getUsuarios() {
         return usuarioDAO.getAllUsers();
     }
-    
-    public String create(){
-        try{
+
+    public String create() {
+        try {
             usuarioDAO.create(usuario);
             return "/usuarios/index?faces-redirect=true";
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
-    
-    public String update(){
-        try{
+
+    public String update() {
+        try {
             usuarioDAO.update(usuario);
             return "/usuarios/index?faces-redirect=true";
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
-    
-    public void delete(Usuario usuario){
-            usuarioDAO.delete(usuario);
+
+    public void delete(Usuario usuario) {
+        usuarioDAO.delete(usuario);
     }
 
     public Usuario getUsuario() {

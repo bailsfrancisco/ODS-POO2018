@@ -1,6 +1,5 @@
 package ar.edu.unnoba.poo2018.ods.controller;
 
-import ar.edu.unnoba.poo2018.ods.dao.ActividadDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ActividadSimpleDAO;
 import ar.edu.unnoba.poo2018.ods.dao.AmbitoDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ConvocatoriaDAO;
@@ -70,9 +69,6 @@ public class ActividadSimpleBacking implements Serializable {
     @EJB
     private UsuarioDAO usuarioDAO;
 
-    @EJB
-    private ActividadDAO actividadDAO;
-
     public List<ActividadSimple> getActividades() {
         return actividadSimpleDAO.getAll();
     }
@@ -107,50 +103,42 @@ public class ActividadSimpleBacking implements Serializable {
         }
     }
 
-    /*Agrega impactos a la tabla en memoria*/
-    public void agregarImpacto() {
-        if (impacto2 == null) {
-            impacto2 = impacto;
-        }
-        impacto.setActividad(actividadSimple);
-        if (actividadSimple.getImpactos() == null) {
-            actividadSimple.setImpactos(new ArrayList<Impacto>());
-        }
-        this.actividadSimple.getImpactos().add(impacto);
-        impacto = new Impacto();
-    }
-
-    public void quitarImpacto(Impacto impacto) {
-        if (impacto2 == null) {
-            impacto2 = impacto;
-        }
-        this.actividadSimple.getImpactos().remove(impacto);
-    }
-
     /*ANDA Asigna una actividad a usuario en la tabla en la vista, luego
       el boton guardar lo guarda en la BD*/
-    public void asignarActividad_a_Usuario(ActividadSimple a, Usuario u) {
+    public void asignarActividad_a_Usuario(ActividadSimple a, Usuario u, UsuarioBacking us) {
         if (actividadSimple2 == null && usuario2 == null) {
             actividadSimple2 = a;
             usuario2 = u;
         }
         u.getActividades().add(a);
+        usuarioDAO.update(u);
     }
 
-    /* ANDA Quita una actividad de un usuario de la tabla en la vista, 
-    al poner guardar deberia eliminarse la que se quito de la tabla 
-    pero no anda eso*/
-    public void quitarActividad_a_Usuario(ActividadSimple a, Usuario u) {
+    /*
+    public void quitarActividad_a_Usuario(ActividadSimple a, Usuario u, UsuarioBacking us) {
         if (actividadSimple2 == null && usuario2 == null) {
             actividadSimple2 = a;
             usuario2 = u;
         }
         u.getActividades().remove(a);
+        usuarioDAO.update(u);
+
+        this.update_actividades_usuario(u);
     }
 
-    /*ESTO DEVUELVE LA LISTA DE LAS ACTIVIDADES QUE TIENE UN USUARIO
-    Es lo mismo que en la dataTable hacer referencia a las actividades de un
-    usuario.
+    public void update_actividades_usuario(Usuario u) {
+        List<ActividadSimple> actividades = this.getActividades();
+        for (ActividadSimple a : actividades) {
+            if (a.getResponsables().contains(u)) {
+                System.out.println(a.getNombreActividad());
+                actividades.remove(a);
+                actividadSimpleDAO.update(a);
+            }
+        }
+    }*/
+
+ /*Devuelve lista de actividades que tiene un usuario*/
+ /*
     public List<ActividadSimple> actividades_usuario(Usuario u) {
         List<ActividadSimple> actividades = this.getActividades();
         List<ActividadSimple> actividadesUsuario = new ArrayList<>();
@@ -161,6 +149,19 @@ public class ActividadSimpleBacking implements Serializable {
         }
         return actividadesUsuario;
     }*/
+    
+ /* ANDA Quita una actividad de un usuario de la tabla en la vista, 
+    al poner guardar deberia eliminarse la que se quito de la tabla 
+    pero no anda eso*/
+    public void quitarActividad_a_Usuario(ActividadSimple a, Usuario u, UsuarioBacking us) {
+        if (actividadSimple2 == null && usuario2 == null) {
+            actividadSimple2 = a;
+            usuario2 = u;
+        }
+        u.getActividades().remove(a);
+        us.update();
+    }
+
     public String create() {
         try {
             this.actividadSimple.setAmbito(this.getAmbito());
@@ -184,6 +185,26 @@ public class ActividadSimpleBacking implements Serializable {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    /*Agrega impactos a la tabla en memoria*/
+    public void agregarImpacto() {
+        if (impacto2 == null) {
+            impacto2 = impacto;
+        }
+        impacto.setActividad(actividadSimple);
+        if (actividadSimple.getImpactos() == null) {
+            actividadSimple.setImpactos(new ArrayList<Impacto>());
+        }
+        this.actividadSimple.getImpactos().add(impacto);
+        impacto = new Impacto();
+    }
+
+    public void quitarImpacto(Impacto impacto) {
+        if (impacto2 == null) {
+            impacto2 = impacto;
+        }
+        this.actividadSimple.getImpactos().remove(impacto);
     }
 
     public float promedio() {

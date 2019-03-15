@@ -13,18 +13,27 @@
         </f:metadata>
     </ui:define>
     <ui:define name="content">
+        <p:panelGrid columns="2" layout="grid">
+            <f:facet name="header">
+                <h:outputText value="#{i18n['headerAsignarActividad']}"></h:outputText>
+            </f:facet>
+            <p:outputLabel value="#{i18n['actividad']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadSimpleBacking.actividad}">
+                <f:selectItems value="#{actividadSimpleBacking.actividades}"
+                               var="actividad" itemLabel="#{actividad.nombreActividad}"/>
+            </p:selectOneMenu>
+            <p:commandButton value="#{i18n['agregarActividad']}" 
+                             actionListener="#{actividadSimpleBacking.asignarActividad_a_Usuario(actividadSimpleBacking.actividad,usuarioBacking.usuario, usuarioBacking)}"
+                             update="messages,actividad_usuario"/>
+        </p:panelGrid>
         <br/>
         <p:dataTable id="actividad_usuario" value="#{usuarioBacking.usuario.actividades}" var="actividad" scrollable="true"
                      scrollHeight="100">
             <p:column headerText="#{i18n['actividad']}">#{actividad.nombreActividad}</p:column>
-            <p:column>
-                <p:commandLink actionListener="#{actividadSimpleBacking.quitarActividad_a_Usuario(actividad, usuarioBacking.usuario, usuarioBacking)}" 
-                               value="#{i18n['linkQuitar']}" update="actividad_usuario"/>
-            </p:column>
         </p:dataTable>
-        <!--p:commandButton value="#{i18n['botonGuardar']}" 
-                         action="" 
-                         update="messages"/-->
+        <p:commandButton value="#{i18n['botonGuardar']}" 
+                         action="#{actividadSimpleBacking.agregarUsuario(usuarioBacking.usuario, actividad)}" 
+                         update="messages"/>
         <p:button value="#{i18n['botonCancelar']}" outcome="/asignaciones/index"/>
     </ui:define>
 </ui:composition>
