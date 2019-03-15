@@ -1,5 +1,6 @@
 package ar.edu.unnoba.poo2018.ods.controller;
 
+import ar.edu.unnoba.poo2018.ods.dao.ActividadCompuestaDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ActividadSimpleDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ODSDAO;
 import ar.edu.unnoba.poo2018.ods.model.ActividadSimple;
@@ -21,30 +22,30 @@ public class ActividadBacking implements Serializable {
     private ActividadSimple actividadSimple;
     private Impacto impacto;
 
-    @PostConstruct
-    public void init() {
-        this.actividadSimple = new ActividadSimple();
-        this.impacto = new Impacto();
-    }
-
     @EJB
     private ActividadSimpleDAO actividadSimpleDAO;
 
     @EJB
     private ODSDAO ODSDAO;
 
+    @PostConstruct
+    public void init() {
+        this.actividadSimple = new ActividadSimple();
+        this.impacto = new Impacto();
+    }
+
     public List<ActividadSimple> actividadesUsuario(Usuario u) {
         List<ActividadSimple> actividadesTotales = this.getActividades();
         List<ActividadSimple> actividades = new ArrayList<>();
-        for(ActividadSimple a : actividadesTotales){
-            if(a.getResponsables().contains(u)){
+        for (ActividadSimple a : actividadesTotales) {
+            if (a.getResponsables().contains(u)) {
                 actividades.add(a);
             }
         }
         return actividades;
     }
-    
-    public String actualizar(){
+
+    public String actualizar() {
         return "/actividades/index?faces-redirect=true";
     }
 

@@ -23,7 +23,7 @@
                                var="actividad" itemLabel="#{actividad.nombreActividad}"/>
             </p:selectOneMenu>
             <p:commandButton value="#{i18n['agregarActividad']}" 
-                             actionListener="#{actividadSimpleBacking.asignarActividad_a_Usuario(actividadSimpleBacking.actividad,usuarioBacking.usuario, usuarioBacking)}"
+                             actionListener="#{actividadSimpleBacking.asignarActividad_a_Usuario(actividadSimpleBacking.actividad,usuarioBacking.usuario)}"
                              update="messages,actividad_usuario"/>
         </p:panelGrid>
         <br/>

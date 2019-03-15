@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 @Entity
-@Table(name = "actividades")
+@Table(name = "actividad")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
         name = "tipo_actividad",
@@ -46,11 +46,14 @@ public abstract class Actividad extends AbstractEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "actividades_usuarios",
+            name = "responsables",
             joinColumns = @JoinColumn(name = "actividad_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     )
     private List<Usuario> responsables;
+
+    @ManyToMany(mappedBy = "actividades")
+    private List<ActividadCompuesta> compuestas;
 
     public Actividad() {
     }

@@ -20,13 +20,13 @@ public class ActividadCompuesta extends Actividad implements Serializable {
             joinColumns = @JoinColumn(name = "actividad_compuesta_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "actividad_id", referencedColumnName = "id")
     )
-    private List<Actividad> actividades;    
+    private List<Actividad> actividades;
 
     public ActividadCompuesta() {
     }
-    
-    
-    public ActividadCompuesta(String nombreActividad, Date fechaInicio, Date fechaFin, String resolucion, String expediente, Ambito ambito, Convocatoria convocatoria, LineaEstrategica lineaEstrategica, ArrayList<Usuario> responsables) {
+
+    public ActividadCompuesta(String nombreActividad, Date fechaInicio, Date fechaFin, String resolucion, String expediente, Ambito ambito, Convocatoria convocatoria, LineaEstrategica lineaEstrategica, ArrayList<Usuario> responsables, ArrayList<Actividad> actividades) {
         super(nombreActividad, fechaInicio, fechaFin, resolucion, expediente, ambito, convocatoria, lineaEstrategica, responsables);
+        this.actividades = actividades;
     }
 }

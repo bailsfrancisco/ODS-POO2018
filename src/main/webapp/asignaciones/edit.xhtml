@@ -18,13 +18,11 @@
                      scrollHeight="100">
             <p:column headerText="#{i18n['actividad']}">#{actividad.nombreActividad}</p:column>
             <p:column>
-                <p:commandLink actionListener="#{actividadSimpleBacking.quitarActividad_a_Usuario(actividad, usuarioBacking.usuario, usuarioBacking)}" 
+                <p:commandLink actionListener="#{actividadSimpleBacking.quitarActividad_a_Usuario(actividad, usuarioBacking.usuario)}" 
                                value="#{i18n['linkQuitar']}" update="actividad_usuario"/>
             </p:column>
         </p:dataTable>
-        <!--p:commandButton value="#{i18n['botonGuardar']}" 
-                         action="" 
-                         update="messages"/-->
+        <p:button value="#{i18n['botonGuardar']}" outcome="/asignaciones/index"/>
         <p:button value="#{i18n['botonCancelar']}" outcome="/asignaciones/index"/>
     </ui:define>
 </ui:composition>
