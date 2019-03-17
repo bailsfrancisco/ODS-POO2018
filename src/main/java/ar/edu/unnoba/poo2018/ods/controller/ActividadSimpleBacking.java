@@ -1,5 +1,6 @@
 package ar.edu.unnoba.poo2018.ods.controller;
 
+import ar.edu.unnoba.poo2018.ods.dao.ActividadCompuestaDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ActividadSimpleDAO;
 import ar.edu.unnoba.poo2018.ods.dao.AmbitoDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ConvocatoriaDAO;
@@ -10,6 +11,7 @@ import ar.edu.unnoba.poo2018.ods.model.Impacto;
 import ar.edu.unnoba.poo2018.ods.model.ODS;
 import ar.edu.unnoba.poo2018.ods.dao.ODSDAO;
 import ar.edu.unnoba.poo2018.ods.dao.UsuarioDAO;
+import ar.edu.unnoba.poo2018.ods.model.ActividadCompuesta;
 import ar.edu.unnoba.poo2018.ods.model.Ambito;
 import ar.edu.unnoba.poo2018.ods.model.Convocatoria;
 import ar.edu.unnoba.poo2018.ods.model.LineaEstrategica;
@@ -28,6 +30,8 @@ public class ActividadSimpleBacking implements Serializable {
 
     private ActividadSimple actividadSimple;
     private ActividadSimple actividadSimple2;
+    
+    private ActividadCompuesta actividadCompuesta;
 
     private Usuario usuario;
     private Usuario usuario2;
@@ -46,6 +50,7 @@ public class ActividadSimpleBacking implements Serializable {
         this.ambito = new Ambito();
         this.convocatoria = new Convocatoria();
         this.lineaEstrategica = new LineaEstrategica();
+        this.actividadCompuesta = new ActividadCompuesta();
     }
 
     @EJB
@@ -68,9 +73,16 @@ public class ActividadSimpleBacking implements Serializable {
 
     @EJB
     private UsuarioDAO usuarioDAO;
+    
+    @EJB
+    private ActividadCompuestaDAO actividadCompuestaDAO;
 
     public List<ActividadSimple> getActividades() {
         return actividadSimpleDAO.getAll();
+    }
+    
+    public List<ActividadCompuesta> getActividadesCompuestas() {
+        return actividadCompuestaDAO.getAll();
     }
 
     public List<Convocatoria> getConvocatorias() {

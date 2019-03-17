@@ -9,9 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
 @DiscriminatorValue("actividad_compuesta")
+@NamedQueries({
+    @NamedQuery(name = "actividadCompuesta.getAllActividadCompuesta",
+            query = "Select a From ActividadCompuesta a")
+})
 public class ActividadCompuesta extends Actividad implements Serializable {
 
     @ManyToMany
