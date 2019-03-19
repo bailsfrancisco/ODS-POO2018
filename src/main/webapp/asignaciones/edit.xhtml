@@ -17,7 +17,7 @@
                      scrollHeight="100">
             <p:column headerText="#{i18n['actividad']}">#{actividad.nombreActividad}</p:column>
             <p:column>
-                <p:commandLink actionListener="#{actividadSimpleBacking.quitarActividad_a_Usuario(actividad, usuarioBacking.usuario)}" 
+                <p:commandLink actionListener="#{actividadBacking.quitarActividad_a_Usuario(actividad, usuarioBacking.usuario)}" 
                                value="#{i18n['linkQuitar']}" update="actividad_usuario"/>
             </p:column>
         </p:dataTable>

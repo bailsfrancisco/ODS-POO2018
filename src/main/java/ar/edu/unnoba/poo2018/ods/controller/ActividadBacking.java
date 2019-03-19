@@ -4,6 +4,7 @@ import ar.edu.unnoba.poo2018.ods.dao.ActividadCompuestaDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ActividadDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ActividadSimpleDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ODSDAO;
+import ar.edu.unnoba.poo2018.ods.dao.UsuarioDAO;
 import ar.edu.unnoba.poo2018.ods.model.Actividad;
 import ar.edu.unnoba.poo2018.ods.model.ActividadCompuesta;
 import ar.edu.unnoba.poo2018.ods.model.ActividadSimple;
@@ -37,6 +38,9 @@ public class ActividadBacking implements Serializable {
 
     @EJB
     private ODSDAO ODSDAO;
+
+    @EJB
+    private UsuarioDAO usuarioDAO;
 
     @PostConstruct
     public void init() {
@@ -88,6 +92,13 @@ public class ActividadBacking implements Serializable {
 
     public void quitarImpacto(Impacto impacto) {
         this.actividadSimple.getImpactos().remove(impacto);
+    }
+
+    public void quitarActividad_a_Usuario(Actividad a, Usuario u) {
+        u.getActividades().remove(a);
+        a.getResponsables().remove(u);
+        usuarioDAO.update(u);
+        actividadDAO.update(a);
     }
 
     public String create() {
