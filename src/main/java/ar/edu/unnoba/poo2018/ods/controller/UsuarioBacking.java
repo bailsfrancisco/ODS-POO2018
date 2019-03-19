@@ -25,6 +25,10 @@ public class UsuarioBacking implements Serializable {
 
     //@Inject
     //private SessionBacking sessionBacking;
+    public List<Usuario> getUsuariosNoAdmin() {
+        return usuarioDAO.getAllUsersNoAdmin();
+    }
+
     public List<Usuario> getUsuarios() {
         return usuarioDAO.getAllUsers();
     }

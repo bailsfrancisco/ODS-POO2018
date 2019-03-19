@@ -17,7 +17,7 @@ public class Impacto extends AbstractEntity {
     private Integer peso;
 
     @ManyToOne
-    @JoinColumn(name = "actividad_id")
+    @JoinColumn(name = "actividad_simple_id")
     private ActividadSimple actividad;
 
     /*

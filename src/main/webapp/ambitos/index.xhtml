@@ -16,12 +16,15 @@
             <p:column headerText="#{i18n['labelNombre']}">
                 <h:outputText value="#{ambito.nombre}"/>
             </p:column>
+            <p:column headerText="#{i18n['labelDescripcion']}">
+                <h:outputText value="#{ambito.descripcion}"/>
+            </p:column>
             <p:column>
                 <h:link outcome="/ambitos/edit" value="#{i18n['editar']}">
                     <f:param name="id" value="#{ambito.id}" />
                 </h:link>
             </p:column>
-            
+
             <p:column>
                 <p:commandLink actionListener="#{ambitoBacking.delete(ambito)}" 
                                value="#{i18n['linkQuitar']}"

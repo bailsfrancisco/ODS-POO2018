@@ -141,4 +141,12 @@ public abstract class Actividad extends AbstractEntity {
     public void setResponsables(ArrayList<Usuario> responsables) {
         this.responsables = responsables;
     }
+
+    public List<ActividadCompuesta> getCompuestas() {
+        return compuestas;
+    }
+
+    public void setCompuestas(List<ActividadCompuesta> compuestas) {
+        this.compuestas = compuestas;
+    }
 }

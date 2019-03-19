@@ -30,4 +30,9 @@ public class UsuarioDAO extends AbstractDAO<Usuario> {
         Query query = em.createNamedQuery("usuario.allUsers");
         return query.getResultList();
     }
+
+    public List<Usuario> getAllUsersNoAdmin() {
+        Query query = em.createNamedQuery("usuario.allUsersNoAdmin");
+        return query.getResultList();
+    }
 }

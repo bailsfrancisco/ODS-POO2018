@@ -16,6 +16,9 @@
             <p:column headerText="#{i18n['labelNombre']}">
                 <h:outputText value="#{convocatoria.nombre}"/>
             </p:column>
+            <p:column headerText="#{i18n['labelDescripcion']}">
+                <h:outputText value="#{convocatoria.descripcion}"/>
+            </p:column>
             <p:column>
                 <h:link outcome="/convocatorias/edit" value="#{i18n['editar']}">
                     <f:param name="id" value="#{convocatoria.id}" />

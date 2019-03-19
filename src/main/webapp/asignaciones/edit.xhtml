@@ -13,7 +13,6 @@
         </f:metadata>
     </ui:define>
     <ui:define name="content">
-        <br/>
         <p:dataTable id="actividad_usuario" value="#{usuarioBacking.usuario.actividades}" var="actividad" scrollable="true"
                      scrollHeight="100">
             <p:column headerText="#{i18n['actividad']}">#{actividad.nombreActividad}</p:column>

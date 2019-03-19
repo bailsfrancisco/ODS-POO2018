@@ -44,6 +44,12 @@
                 <f:selectItems value="#{actividadSimpleBacking.lineasEstategicas}" 
                                var="lineaEstrategica" itemLabel="#{lineaEstrategica.nombre}"/>
             </p:selectOneMenu>
+        </p:panelGrid>
+        <br/>
+        <p:panelGrid columns="2" layout="grid">
+            <f:facet name="header">
+                <h:outputText value="#{i18n['Impacto']}"></h:outputText>
+            </f:facet>
             <p:outputLabel value="#{i18n['objetivo']}"></p:outputLabel>
             <p:selectOneMenu value="#{actividadSimpleBacking.impacto.objetivo}">
                 <f:selectItems value="#{actividadSimpleBacking.objetivos}" 

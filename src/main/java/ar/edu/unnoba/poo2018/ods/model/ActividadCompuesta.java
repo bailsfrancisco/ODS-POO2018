@@ -22,11 +22,19 @@ public class ActividadCompuesta extends Actividad implements Serializable {
 
     @ManyToMany
     @JoinTable(
-            name = "actividades_actividades_compuestas",
+            name = "actividad_actividades_compuestas",
             joinColumns = @JoinColumn(name = "actividad_compuesta_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "actividad_id", referencedColumnName = "id")
     )
     private List<Actividad> actividades;
+
+    public List<Actividad> getActividades() {
+        return actividades;
+    }
+
+    public void setActividades(ArrayList<Actividad> actividades) {
+        this.actividades = actividades;
+    }
 
     public ActividadCompuesta() {
     }

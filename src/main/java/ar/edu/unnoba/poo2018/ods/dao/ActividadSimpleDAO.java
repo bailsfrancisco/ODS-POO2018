@@ -17,7 +17,8 @@ public class ActividadSimpleDAO extends AbstractDAO<ActividadSimple> {
         Query query = em.createNamedQuery("actividadSimple.getAllActividadSimple");
         return query.getResultList();
     }
-
+    
+    /*
     public List<ActividadSimple> getActividades(Long id) {
         Query query = em.createNativeQuery("SELECT * from Actividad a where a.id IN (select r.actividad_id from Responsables r where r.usuario_id=?) and a.id IN (select s.id from Actividades_Simples s)", ActividadSimple.class);
         query.setParameter(1, id);
@@ -28,5 +29,5 @@ public class ActividadSimpleDAO extends AbstractDAO<ActividadSimple> {
             simples = null;
         }
         return simples;
-    }
+    }*/
 }

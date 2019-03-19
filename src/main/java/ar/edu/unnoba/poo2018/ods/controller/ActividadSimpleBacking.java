@@ -30,8 +30,9 @@ public class ActividadSimpleBacking implements Serializable {
 
     private ActividadSimple actividadSimple;
     private ActividadSimple actividadSimple2;
-    
-    private ActividadCompuesta actividadCompuesta;
+
+    private ActividadCompuesta actividadC;
+    private ActividadCompuesta actividadC2;
 
     private Usuario usuario;
     private Usuario usuario2;
@@ -50,11 +51,13 @@ public class ActividadSimpleBacking implements Serializable {
         this.ambito = new Ambito();
         this.convocatoria = new Convocatoria();
         this.lineaEstrategica = new LineaEstrategica();
-        this.actividadCompuesta = new ActividadCompuesta();
     }
 
     @EJB
     private ActividadSimpleDAO actividadSimpleDAO;
+
+    @EJB
+    private ActividadCompuestaDAO actividadCompuestaDAO;
 
     @EJB
     private ODSDAO odsDAO;
@@ -73,16 +76,9 @@ public class ActividadSimpleBacking implements Serializable {
 
     @EJB
     private UsuarioDAO usuarioDAO;
-    
-    @EJB
-    private ActividadCompuestaDAO actividadCompuestaDAO;
 
     public List<ActividadSimple> getActividades() {
         return actividadSimpleDAO.getAll();
-    }
-    
-    public List<ActividadCompuesta> getActividadesCompuestas() {
-        return actividadCompuestaDAO.getAll();
     }
 
     public List<Convocatoria> getConvocatorias() {
@@ -101,7 +97,6 @@ public class ActividadSimpleBacking implements Serializable {
         return lineaEstrategicaDAO.getAll();
     }
 
-    /*BOTON GUARDAR ANDA, GUARDA EN LA BD Y VUELVE AL INDEX DE ASIGNACIONES*/
     public String agregarUsuario(Usuario u, ActividadSimple a) {
         if (actividadSimple.getResponsables() == null) {
             actividadSimple.setResponsables(new ArrayList<Usuario>());
@@ -115,8 +110,6 @@ public class ActividadSimpleBacking implements Serializable {
         }
     }
 
-    /*ANDA Asigna una actividad a usuario en la tabla en la vista, luego
-      el boton guardar lo guarda en la BD*/
     public void asignarActividad_a_Usuario(ActividadSimple a, Usuario u) {
         if (actividadSimple2 == null && usuario2 == null) {
             actividadSimple2 = a;
@@ -126,7 +119,6 @@ public class ActividadSimpleBacking implements Serializable {
         usuarioDAO.update(u);
     }
 
-    /*ANDA*/
     public void quitarActividad_a_Usuario(ActividadSimple a, Usuario u) {
         u.getActividades().remove(a);
         a.getResponsables().remove(u);
@@ -134,32 +126,6 @@ public class ActividadSimpleBacking implements Serializable {
         actividadSimpleDAO.update(a);
     }
 
-    public String create() {
-        try {
-            this.actividadSimple.setAmbito(this.getAmbito());
-            this.actividadSimple.setConvocatoria(this.getConvocatoria());
-            this.actividadSimple.setLineaEstrategica(this.getLineaEstrategica());
-            actividadSimpleDAO.create(actividadSimple);
-            return "/actividades_simples/index?faces-redirect=true";
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public String update() {
-        try {
-            this.actividadSimple.setAmbito(this.getAmbito());
-            this.actividadSimple.setConvocatoria(this.getConvocatoria());
-            this.actividadSimple.setLineaEstrategica(this.getLineaEstrategica());
-            impactoDAO.delete(impacto2);
-            actividadSimpleDAO.update(actividadSimple);
-            return "/actividades_simples/index?faces-redirect=true";
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    /*Agrega impactos a la tabla en memoria*/
     public void agregarImpacto() {
         if (impacto2 == null) {
             impacto2 = impacto;
@@ -197,6 +163,31 @@ public class ActividadSimpleBacking implements Serializable {
             }
         }
         return ((totalPesoImpacto / promedio()) * 100);
+    }
+
+    public String create() {
+        try {
+            this.actividadSimple.setAmbito(this.getAmbito());
+            this.actividadSimple.setConvocatoria(this.getConvocatoria());
+            this.actividadSimple.setLineaEstrategica(this.getLineaEstrategica());
+            actividadSimpleDAO.create(actividadSimple);
+            return "/actividades_simples/index?faces-redirect=true";
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public String update() {
+        try {
+            this.actividadSimple.setAmbito(this.getAmbito());
+            this.actividadSimple.setConvocatoria(this.getConvocatoria());
+            this.actividadSimple.setLineaEstrategica(this.getLineaEstrategica());
+            impactoDAO.delete(impacto2);
+            actividadSimpleDAO.update(actividadSimple);
+            return "/actividades_simples/index?faces-redirect=true";
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public void delete(ActividadSimple actividad) {
@@ -250,17 +241,4 @@ public class ActividadSimpleBacking implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    /*Devuelve lista de actividades que tiene un usuario*/
- /*
-    public List<ActividadSimple> actividades_usuario(Usuario u) {
-        List<ActividadSimple> actividades = this.getActividades();
-        List<ActividadSimple> actividadesUsuario = new ArrayList<>();
-        for (ActividadSimple a : actividades) {
-            if (a.getResponsables().contains(u)) {
-                actividadesUsuario.add(a);
-            }
-        }
-        return actividadesUsuario;
-    }*/
 }

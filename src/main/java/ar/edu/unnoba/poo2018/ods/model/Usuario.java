@@ -14,7 +14,10 @@ import javax.persistence.Table;
             query = "Select u From Usuario u where u.email = :email and u.password = :password")
     ,
     @NamedQuery(name = "usuario.allUsers",
-            query = "Select u From Usuario u"),})
+            query = "Select u From Usuario u")
+    ,
+        @NamedQuery(name = "usuario.allUsersNoAdmin",
+            query = "Select u From Usuario u where u.admin = False"),})
 public class Usuario extends AbstractEntity {
 
     private String email;
@@ -32,7 +35,7 @@ public class Usuario extends AbstractEntity {
         this.actividades = actividades;
     }
 
-    public Usuario(){
+    public Usuario() {
     }
 
     public Usuario(String email, String password) {
@@ -70,6 +73,14 @@ public class Usuario extends AbstractEntity {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getAdminString() {
+        if (admin == true) {
+            return "Si";
+        } else {
+            return "No";
+        }
     }
 
     /**

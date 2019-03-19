@@ -1,8 +1,11 @@
 package ar.edu.unnoba.poo2018.ods.controller;
 
 import ar.edu.unnoba.poo2018.ods.dao.ActividadCompuestaDAO;
+import ar.edu.unnoba.poo2018.ods.dao.ActividadDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ActividadSimpleDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ODSDAO;
+import ar.edu.unnoba.poo2018.ods.model.Actividad;
+import ar.edu.unnoba.poo2018.ods.model.ActividadCompuesta;
 import ar.edu.unnoba.poo2018.ods.model.ActividadSimple;
 import ar.edu.unnoba.poo2018.ods.model.Impacto;
 import ar.edu.unnoba.poo2018.ods.model.ODS;
@@ -21,9 +24,16 @@ public class ActividadBacking implements Serializable {
 
     private ActividadSimple actividadSimple;
     private Impacto impacto;
+    private Actividad actividad;
 
     @EJB
     private ActividadSimpleDAO actividadSimpleDAO;
+
+    @EJB
+    private ActividadCompuestaDAO actividadCompuestaDAO;
+
+    @EJB
+    private ActividadDAO actividadDAO;
 
     @EJB
     private ODSDAO ODSDAO;
@@ -34,12 +44,18 @@ public class ActividadBacking implements Serializable {
         this.impacto = new Impacto();
     }
 
-    public List<ActividadSimple> actividadesUsuario(Usuario u) {
+    public List<Actividad> actividadesUsuario(Usuario u) {
         List<ActividadSimple> actividadesTotales = this.getActividades();
-        List<ActividadSimple> actividades = new ArrayList<>();
+        List<ActividadCompuesta> actividadesTotalesC = this.getActividadesC();
+        List<Actividad> actividades = new ArrayList<>();
         for (ActividadSimple a : actividadesTotales) {
             if (a.getResponsables().contains(u)) {
                 actividades.add(a);
+            }
+        }
+        for (ActividadCompuesta ac : actividadesTotalesC) {
+            if (ac.getResponsables().contains(u)) {
+                actividades.add(ac);
             }
         }
         return actividades;
@@ -47,6 +63,10 @@ public class ActividadBacking implements Serializable {
 
     public String actualizar() {
         return "/actividades/index?faces-redirect=true";
+    }
+
+    public List<ActividadCompuesta> getActividadesC() {
+        return actividadCompuestaDAO.getAll();
     }
 
     public List<ActividadSimple> getActividades() {

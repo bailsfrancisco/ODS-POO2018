@@ -9,58 +9,44 @@
 
     <ui:define name="head">
         <f:metadata>
-            <f:viewParam name="id" value="#{actividadSimpleBacking.actividad}"/>
+            <f:viewParam name="id" value="#{actividadCompuestaBacking.actividadCompuesta}"/>
         </f:metadata>
     </ui:define>
-    <ui:define name="content">
+    <ui:define name="content" >
         <p:panelGrid columns="2" layout="grid">
             <f:facet name="header">
                 <h:outputText value="#{i18n['headerEditarActividad']}"></h:outputText>
             </f:facet>
             <p:outputLabel value="#{i18n['nombreActividad']}"></p:outputLabel>
-            <p:inputText value="#{actividadCompuestaBacking.actividad.nombreActividad}"/>
+            <p:inputText value="#{actividadCompuestaBacking.actividadCompuesta.nombreActividad}"/>
             <p:outputLabel value="#{i18n['headerFechaI']}"></p:outputLabel>
-            <p:calendar value="#{actividadCompuestaBacking.actividad.fechaInicio}" pattern="dd-MM-yyyy"/>
+            <p:calendar value="#{actividadCompuestaBacking.actividadCompuesta.fechaInicio}" pattern="dd-MM-yyyy"/>
             <p:outputLabel value="#{i18n['headerFechaF']}"></p:outputLabel>
-            <p:calendar value="#{actividadCompuestaBacking.actividad.fechaFin}" pattern="dd-MM-yyyy"/>
+            <p:calendar value="#{actividadCompuestaBacking.actividadCompuesta.fechaFin}" pattern="dd-MM-yyyy"/>
             <p:outputLabel value="#{i18n['headerResolucion']}"></p:outputLabel>
-            <p:inputText value="#{actividadCompuestaBacking.actividad.resolucion}"/>
+            <p:inputText value="#{actividadCompuestaBacking.actividadCompuesta.resolucion}"/>
             <p:outputLabel value="#{i18n['headerExpediente']}"></p:outputLabel>
-            <p:inputText value="#{actividadCompuestaBacking.actividad.expediente}"/>
+            <p:inputText value="#{actividadCompuestaBacking.actividadCompuesta.expediente}"/>
             <p:outputLabel value="#{i18n['convocatoria']}"></p:outputLabel>
-
+            <p:selectOneMenu value="#{actividadCompuestaBacking.convocatoria}">
+                <f:selectItems value="#{actividadCompuestaBacking.convocatorias}" 
+                               var="convocatoria" itemLabel="#{convocatoria.nombre}"/>
+            </p:selectOneMenu>
             <p:outputLabel value="#{i18n['ambito']}"></p:outputLabel>
-            <p:selectOneMenu value="#{actividadSimpleBacking.ambito}">
-                <f:selectItems value="#{actividadSimpleBacking.ambitos}" 
+            <p:selectOneMenu value="#{actividadCompuestaBacking.ambito}">
+                <f:selectItems value="#{actividadCompuestaBacking.ambitos}" 
                                var="ambito" itemLabel="#{ambito.nombre}"/>
             </p:selectOneMenu>
-
             <p:outputLabel value="#{i18n['linea_estrategica']}"></p:outputLabel>
-            <p:selectOneMenu value="#{actividadSimpleBacking.lineaEstrategica}">
-                <f:selectItems value="#{actividadSimpleBacking.lineasEstategicas}" 
+            <p:selectOneMenu value="#{actividadCompuestaBacking.lineaEstrategica}">
+                <f:selectItems value="#{actividadCompuestaBacking.lineasEstategicas}" 
                                var="lineaEstrategica" itemLabel="#{lineaEstrategica.nombre}"/>
             </p:selectOneMenu>
-            <p:outputLabel value="#{i18n['objetivo']}"></p:outputLabel>
-            <p:selectOneMenu value="#{actividadSimpleBacking.impacto.objetivo}">
-                <f:selectItems value="#{actividadSimpleBacking.objetivos}" 
-                               var="objetivo" itemLabel="#{objetivo.nombre}"/>
-            <p:selectOneMenu value="#{actividadSimpleBacking.actividades}">
-                <f:selectItems value="#{actividadSimpleBacking.actividades}" 
-                               var="actividad" itemLabel="#{actividad.nombre}"/>
-            </p:selectOneMenu>
         </p:panelGrid>
-        <br/>
-        <p:dataTable id="actividades" value="#{actividadCompuestaBacking.actividades}" var="actividad">
-            <p:column headerText="#{i18n['actividad']}">#{actividad.nombre}</p:column>
-            <p:column>
-                <p:commandLink actionListener="#{actividadCompuestaBacking.quitarActividad(actividad)}" 
-                               value="#{i18n['linkQuitar']}" update="actividades"/>
-            </p:column>
-        </p:dataTable>
         <br/>
         <p:commandButton value="#{i18n['botonGuardar']}" 
                          action="#{actividadCompuestaBacking.update()}" 
                          update="messages"/>
-        <p:button value="#{i18n['botonCancelar']}" outcome="/actividades_compuesta/index"/>
+        <p:button value="#{i18n['botonCancelar']}" outcome="/actividades_compuestas/index"/>
     </ui:define>
 </ui:composition>
