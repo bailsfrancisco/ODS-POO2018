@@ -19,10 +19,15 @@ import ar.edu.unnoba.poo2018.ods.model.Usuario;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PropertyResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import java.lang.Math;
 
 @ManagedBean
 @ViewScoped
@@ -154,7 +159,7 @@ public class ActividadSimpleBacking implements Serializable {
         return totalPesoImpactos;
     }
 
-    public float promedioPorObjetivo(ODS ods) {
+    public Double promedioPorObjetivo(ODS ods) {
         List<Impacto> impactos = impactoDAO.getAll();
         int totalPesoImpacto = 0;
         for (Impacto i : impactos) {
@@ -162,7 +167,8 @@ public class ActividadSimpleBacking implements Serializable {
                 totalPesoImpacto += i.getPeso();
             }
         }
-        return ((totalPesoImpacto / promedio()) * 100);
+        Double n = Math.floor((totalPesoImpacto / promedio()) * 100);
+        return n;
     }
 
     public String create() {
@@ -190,8 +196,19 @@ public class ActividadSimpleBacking implements Serializable {
         }
     }
 
-    public void delete(ActividadSimple actividad) {
-        actividadSimpleDAO.delete(actividad);
+    @Inject
+    private transient PropertyResourceBundle bundle;
+
+    public String delete(ActividadSimple actividad) {
+        if ((actividad.getImpactos() == null || actividad.getImpactos().isEmpty()) && (actividad.getResponsables() == null || actividad.getResponsables().isEmpty())) {
+            actividadSimpleDAO.delete(actividad);
+        } else {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message = new FacesMessage(bundle.getString("noSePuedeEliminarActividad"));
+            context.addMessage(null, message);
+            return null;
+        }
+        return null;
     }
 
     public ActividadSimple getActividad() {
