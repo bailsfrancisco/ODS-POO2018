@@ -9,7 +9,7 @@
 
     <ui:define name="content">
         <p:dataTable id="usuarios"
-                     value="#{usuarioBacking.usuarios}" 
+                     value="#{usuarioBacking.usuariosNoAdmin}" 
                      var="usuario" 
                      scrollable="true"
                      scrollHeight="250">
@@ -18,7 +18,12 @@
             </p:column>
 
             <p:column>
-                <h:link outcome="/asignaciones/edit" value="#{i18n['asignarActividad']}">
+                <h:link outcome="/asignaciones/new" value="#{i18n['asignarActividad']}">
+                    <f:param name="id" value="#{usuario.id}" />
+                </h:link>
+            </p:column>
+            <p:column>
+                <h:link outcome="/asignaciones/edit" value="#{i18n['quitarActividad']}">
                     <f:param name="id" value="#{usuario.id}" />
                 </h:link>
             </p:column>

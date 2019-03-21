@@ -25,8 +25,9 @@ public class ActividadSimple extends Actividad implements Serializable {
     public ActividadSimple() {
     }
 
-    public ActividadSimple(String nombreActividad, Date fechaInicio, Date fechaFin, String resolucion, String expediente, Ambito ambito, Convocatoria convocatoria, LineaEstrategica lineaEstrategica, ArrayList<Usuario> responsables) {
+    public ActividadSimple(String nombreActividad, Date fechaInicio, Date fechaFin, String resolucion, String expediente, Ambito ambito, Convocatoria convocatoria, LineaEstrategica lineaEstrategica, ArrayList<Usuario> responsables, ArrayList<Impacto> impactos) {
         super(nombreActividad, fechaInicio, fechaFin, resolucion, expediente, ambito, convocatoria, lineaEstrategica, responsables);
+        this.impactos = impactos;
     }
 
     public List<Impacto> getImpactos() {

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../template.xhtml">
+
+    <ui:define name="content" >
+        <p:panelGrid columns="2" layout="grid">
+            <f:facet name="header">
+                <h:outputText value="#{i18n['headerIngresarActividad']}"></h:outputText>
+            </f:facet>
+            <p:outputLabel value="#{i18n['nombreActividad']}"></p:outputLabel>
+            <p:inputText value="#{actividadCompuestaBacking.actividadCompuesta.nombreActividad}"/>
+            <p:outputLabel value="#{i18n['headerFechaI']}"></p:outputLabel>
+            <p:calendar value="#{actividadCompuestaBacking.actividadCompuesta.fechaInicio}" pattern="dd-MM-yyyy"/>
+            <p:outputLabel value="#{i18n['headerFechaF']}"></p:outputLabel>
+            <p:calendar value="#{actividadCompuestaBacking.actividadCompuesta.fechaFin}" pattern="dd-MM-yyyy"/>
+            <p:outputLabel value="#{i18n['headerResolucion']}"></p:outputLabel>
+            <p:inputText value="#{actividadCompuestaBacking.actividadCompuesta.resolucion}"/>
+            <p:outputLabel value="#{i18n['headerExpediente']}"></p:outputLabel>
+            <p:inputText value="#{actividadCompuestaBacking.actividadCompuesta.expediente}"/>
+            <p:outputLabel value="#{i18n['convocatoria']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadCompuestaBacking.convocatoria}">
+                <f:selectItems value="#{actividadCompuestaBacking.convocatorias}" 
+                               var="convocatoria" itemLabel="#{convocatoria.nombre}"/>
+            </p:selectOneMenu>
+            <p:outputLabel value="#{i18n['ambito']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadCompuestaBacking.ambito}">
+                <f:selectItems value="#{actividadCompuestaBacking.ambitos}" 
+                               var="ambito" itemLabel="#{ambito.nombre}"/>
+            </p:selectOneMenu>
+            <p:outputLabel value="#{i18n['linea_estrategica']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadCompuestaBacking.lineaEstrategica}">
+                <f:selectItems value="#{actividadCompuestaBacking.lineasEstategicas}" 
+                               var="lineaEstrategica" itemLabel="#{lineaEstrategica.nombre}"/>
+            </p:selectOneMenu>
+        </p:panelGrid>
+        <br/>
+        <p:commandButton value="#{i18n['botonGuardar']}" 
+                         action="#{actividadCompuestaBacking.create()}" 
+                         update="messages"/>
+        <p:button value="#{i18n['botonCancelar']}" outcome="/actividades_compuestas/index"/>
+    </ui:define>
+</ui:composition>

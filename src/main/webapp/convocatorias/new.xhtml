@@ -14,6 +14,8 @@
             </f:facet>
             <p:outputLabel value="#{i18n['labelNombre']}"></p:outputLabel>
             <p:inputText value="#{convocatoriaBacking.convocatoria.nombre}"/>
+            <p:outputLabel value="#{i18n['labelDescripcion']}"></p:outputLabel>
+            <p:inputText value="#{convocatoriaBacking.convocatoria.descripcion}"/>
         </p:panelGrid>
         <br/>
         <p:commandButton value="#{i18n['botonGuardar']}" 

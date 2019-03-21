@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../template.xhtml">
+
+    <ui:define name="head">
+        <f:metadata>
+            <f:viewParam name="id" value="#{usuarioBacking.usuario}"/>
+        </f:metadata>
+    </ui:define>
+    <ui:define name="content">
+
+
+        <p:panelGrid columns="2" layout="grid">
+            <f:facet name="header">
+                <h:outputText value="#{i18n['headerAsignarActividad']}"></h:outputText>
+            </f:facet>
+            <p:outputLabel value="#{i18n['actividad']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadSimpleBacking.actividad}">
+                <f:selectItems value="#{actividadSimpleBacking.actividades}"
+                               var="actividad" itemLabel="#{actividad.nombreActividad}"/>
+            </p:selectOneMenu>
+            <p:commandButton value="#{i18n['agregarActividad']}" 
+                             actionListener="#{actividadSimpleBacking.asignarActividad_a_Usuario(actividadSimpleBacking.actividad,usuarioBacking.usuario)}"
+                             update="messages,actividad_usuario"/>
+            <br/>
+            <br/>
+            <br/>
+            <p:commandButton value="#{i18n['botonGuardar']}" 
+                             action="#{actividadSimpleBacking.agregarUsuario(usuarioBacking.usuario, actividad)}" 
+                             update="messages"/>
+        </p:panelGrid>
+        <br/>
+        <p:panelGrid columns="2" layout="grid">
+            <f:facet name="header">
+                <h:outputText value="#{i18n['headerAsignarActividad']}"></h:outputText>
+            </f:facet>
+            <p:outputLabel value="#{i18n['actividad']}"></p:outputLabel>
+            <p:selectOneMenu value="#{actividadCompuestaBacking.actividadCompuesta}">
+                <f:selectItems value="#{actividadCompuestaBacking.actividades}"
+                               var="actividad_compuesta" itemLabel="#{actividad_compuesta.nombreActividad}"/>
+            </p:selectOneMenu>
+            <p:commandButton value="#{i18n['agregarActividadCompuesta']}" 
+                             actionListener="#{actividadCompuestaBacking.asignarActividadC_a_Usuario(actividadCompuestaBacking.actividadCompuesta,usuarioBacking.usuario)}"
+                             update="messages,actividad_usuario"/>
+            <br/>
+            <br/>
+            <br/>
+            <p:commandButton value="#{i18n['botonGuardar']}" 
+                             action="#{actividadCompuestaBacking.agregarUsuario(usuarioBacking.usuario, actividadC)}" 
+                             update="messages"/>
+        </p:panelGrid>
+        <br/>
+        <p:dataTable id="actividad_usuario" value="#{usuarioBacking.usuario.actividades}" var="actividad" scrollable="true"
+                     scrollHeight="100">
+            <p:column headerText="#{i18n['actividad']}">#{actividad.nombreActividad}</p:column>
+        </p:dataTable>
+        <p:button value="#{i18n['botonCancelar']}" outcome="/asignaciones/index"/>
+    </ui:define>
+</ui:composition>

@@ -9,24 +9,38 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
 @DiscriminatorValue("actividad_compuesta")
+@NamedQueries({
+    @NamedQuery(name = "actividadCompuesta.getAllActividadCompuesta",
+            query = "Select a From ActividadCompuesta a")
+})
 public class ActividadCompuesta extends Actividad implements Serializable {
 
     @ManyToMany
     @JoinTable(
-            name = "actividades_actividades_compuestas",
+            name = "actividad_actividades_compuestas",
             joinColumns = @JoinColumn(name = "actividad_compuesta_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "actividad_id", referencedColumnName = "id")
     )
-    private List<Actividad> actividades;    
+    private List<Actividad> actividades;
+
+    public List<Actividad> getActividades() {
+        return actividades;
+    }
+
+    public void setActividades(ArrayList<Actividad> actividades) {
+        this.actividades = actividades;
+    }
 
     public ActividadCompuesta() {
     }
-    
-    
-    public ActividadCompuesta(String nombreActividad, Date fechaInicio, Date fechaFin, String resolucion, String expediente, Ambito ambito, Convocatoria convocatoria, LineaEstrategica lineaEstrategica, ArrayList<Usuario> responsables) {
+
+    public ActividadCompuesta(String nombreActividad, Date fechaInicio, Date fechaFin, String resolucion, String expediente, Ambito ambito, Convocatoria convocatoria, LineaEstrategica lineaEstrategica, ArrayList<Usuario> responsables, ArrayList<Actividad> actividades) {
         super(nombreActividad, fechaInicio, fechaFin, resolucion, expediente, ambito, convocatoria, lineaEstrategica, responsables);
+        this.actividades = actividades;
     }
 }

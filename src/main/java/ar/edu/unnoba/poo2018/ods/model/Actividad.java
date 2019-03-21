@@ -16,14 +16,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 @Entity
-@Table (name = "actividades")
+@Table(name = "actividad")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
-    name = "tipo_actividad",
-    discriminatorType = DiscriminatorType.STRING
+        name = "tipo_actividad",
+        discriminatorType = DiscriminatorType.STRING
 )
 public abstract class Actividad extends AbstractEntity {
-    
+
     private String nombreActividad;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaInicio;
@@ -31,26 +31,29 @@ public abstract class Actividad extends AbstractEntity {
     private Date fechaFin;
     private String resolucion;
     private String expediente;
-    
+
     @JoinColumn(name = "ambito_id")
     @ManyToOne(optional = false)
     private Ambito ambito;
-    
+
     @JoinColumn(name = "convocatoria_id")
     @ManyToOne(optional = false)
     private Convocatoria convocatoria;
-    
+
     @JoinColumn(name = "linea_estrategica_id")
     @ManyToOne(optional = false)
     private LineaEstrategica lineaEstrategica;
-    
+
     @ManyToMany
     @JoinTable(
-            name = "actividades_usuarios",
-            joinColumns = @JoinColumn (name = "actividad_id", referencedColumnName = "id"),
+            name = "responsables",
+            joinColumns = @JoinColumn(name = "actividad_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     )
     private List<Usuario> responsables;
+
+    @ManyToMany(mappedBy = "actividades")
+    private List<ActividadCompuesta> compuestas;
 
     public Actividad() {
     }
@@ -137,5 +140,13 @@ public abstract class Actividad extends AbstractEntity {
 
     public void setResponsables(ArrayList<Usuario> responsables) {
         this.responsables = responsables;
+    }
+
+    public List<ActividadCompuesta> getCompuestas() {
+        return compuestas;
+    }
+
+    public void setCompuestas(List<ActividadCompuesta> compuestas) {
+        this.compuestas = compuestas;
     }
 }

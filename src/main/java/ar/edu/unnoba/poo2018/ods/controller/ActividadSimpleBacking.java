@@ -1,6 +1,6 @@
 package ar.edu.unnoba.poo2018.ods.controller;
 
-import ar.edu.unnoba.poo2018.ods.dao.ActividadDAO;
+import ar.edu.unnoba.poo2018.ods.dao.ActividadCompuestaDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ActividadSimpleDAO;
 import ar.edu.unnoba.poo2018.ods.dao.AmbitoDAO;
 import ar.edu.unnoba.poo2018.ods.dao.ConvocatoriaDAO;
@@ -11,6 +11,7 @@ import ar.edu.unnoba.poo2018.ods.model.Impacto;
 import ar.edu.unnoba.poo2018.ods.model.ODS;
 import ar.edu.unnoba.poo2018.ods.dao.ODSDAO;
 import ar.edu.unnoba.poo2018.ods.dao.UsuarioDAO;
+import ar.edu.unnoba.poo2018.ods.model.ActividadCompuesta;
 import ar.edu.unnoba.poo2018.ods.model.Ambito;
 import ar.edu.unnoba.poo2018.ods.model.Convocatoria;
 import ar.edu.unnoba.poo2018.ods.model.LineaEstrategica;
@@ -18,10 +19,15 @@ import ar.edu.unnoba.poo2018.ods.model.Usuario;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PropertyResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import java.lang.Math;
 
 @ManagedBean
 @ViewScoped
@@ -29,6 +35,9 @@ public class ActividadSimpleBacking implements Serializable {
 
     private ActividadSimple actividadSimple;
     private ActividadSimple actividadSimple2;
+
+    private ActividadCompuesta actividadC;
+    private ActividadCompuesta actividadC2;
 
     private Usuario usuario;
     private Usuario usuario2;
@@ -53,6 +62,9 @@ public class ActividadSimpleBacking implements Serializable {
     private ActividadSimpleDAO actividadSimpleDAO;
 
     @EJB
+    private ActividadCompuestaDAO actividadCompuestaDAO;
+
+    @EJB
     private ODSDAO odsDAO;
 
     @EJB
@@ -69,9 +81,6 @@ public class ActividadSimpleBacking implements Serializable {
 
     @EJB
     private UsuarioDAO usuarioDAO;
-
-    @EJB
-    private ActividadDAO actividadDAO;
 
     public List<ActividadSimple> getActividades() {
         return actividadSimpleDAO.getAll();
@@ -93,7 +102,6 @@ public class ActividadSimpleBacking implements Serializable {
         return lineaEstrategicaDAO.getAll();
     }
 
-    /*BOTON GUARDAR ANDA, GUARDA EN LA BD Y VUELVE AL INDEX DE ASIGNACIONES*/
     public String agregarUsuario(Usuario u, ActividadSimple a) {
         if (actividadSimple.getResponsables() == null) {
             actividadSimple.setResponsables(new ArrayList<Usuario>());
@@ -107,7 +115,22 @@ public class ActividadSimpleBacking implements Serializable {
         }
     }
 
-    /*Agrega impactos a la tabla en memoria*/
+    public void asignarActividad_a_Usuario(ActividadSimple a, Usuario u) {
+        if (actividadSimple2 == null && usuario2 == null) {
+            actividadSimple2 = a;
+            usuario2 = u;
+        }
+        u.getActividades().add(a);
+        usuarioDAO.update(u);
+    }
+
+    public void quitarActividad_a_Usuario(ActividadSimple a, Usuario u) {
+        u.getActividades().remove(a);
+        a.getResponsables().remove(u);
+        usuarioDAO.update(u);
+        actividadSimpleDAO.update(a);
+    }
+
     public void agregarImpacto() {
         if (impacto2 == null) {
             impacto2 = impacto;
@@ -127,40 +150,27 @@ public class ActividadSimpleBacking implements Serializable {
         this.actividadSimple.getImpactos().remove(impacto);
     }
 
-    /*ANDA Asigna una actividad a usuario en la tabla en la vista, luego
-      el boton guardar lo guarda en la BD*/
-    public void asignarActividad_a_Usuario(ActividadSimple a, Usuario u) {
-        if (actividadSimple2 == null && usuario2 == null) {
-            actividadSimple2 = a;
-            usuario2 = u;
+    public float promedio() {
+        List<Impacto> impactos = impactoDAO.getAll();
+        int totalPesoImpactos = 0;
+        for (Impacto i : impactos) {
+            totalPesoImpactos += i.getPeso();
         }
-        u.getActividades().add(a);
+        return totalPesoImpactos;
     }
 
-    /* ANDA Quita una actividad de un usuario de la tabla en la vista, 
-    al poner guardar deberia eliminarse la que se quito de la tabla 
-    pero no anda eso*/
-    public void quitarActividad_a_Usuario(ActividadSimple a, Usuario u) {
-        if (actividadSimple2 == null && usuario2 == null) {
-            actividadSimple2 = a;
-            usuario2 = u;
-        }
-        u.getActividades().remove(a);
-    }
-
-    /*ESTO DEVUELVE LA LISTA DE LAS ACTIVIDADES QUE TIENE UN USUARIO
-    Es lo mismo que en la dataTable hacer referencia a las actividades de un
-    usuario.
-    public List<ActividadSimple> actividades_usuario(Usuario u) {
-        List<ActividadSimple> actividades = this.getActividades();
-        List<ActividadSimple> actividadesUsuario = new ArrayList<>();
-        for (ActividadSimple a : actividades) {
-            if (a.getResponsables().contains(u)) {
-                actividadesUsuario.add(a);
+    public Double promedioPorObjetivo(ODS ods) {
+        List<Impacto> impactos = impactoDAO.getAll();
+        int totalPesoImpacto = 0;
+        for (Impacto i : impactos) {
+            if (ods.getNombre().equals(i.getObjetivo().getNombre())) {
+                totalPesoImpacto += i.getPeso();
             }
         }
-        return actividadesUsuario;
-    }*/
+        Double n = Math.floor((totalPesoImpacto / promedio()) * 100);
+        return n;
+    }
+
     public String create() {
         try {
             this.actividadSimple.setAmbito(this.getAmbito());
@@ -186,28 +196,19 @@ public class ActividadSimpleBacking implements Serializable {
         }
     }
 
-    public float promedio() {
-        List<Impacto> impactos = impactoDAO.getAll();
-        int totalPesoImpactos = 0;
-        for (Impacto i : impactos) {
-            totalPesoImpactos += i.getPeso();
-        }
-        return totalPesoImpactos;
-    }
+    @Inject
+    private transient PropertyResourceBundle bundle;
 
-    public float promedioPorObjetivo(ODS ods) {
-        List<Impacto> impactos = impactoDAO.getAll();
-        int totalPesoImpacto = 0;
-        for (Impacto i : impactos) {
-            if (ods.getNombre().equals(i.getObjetivo().getNombre())) {
-                totalPesoImpacto += i.getPeso();
-            }
+    public String delete(ActividadSimple actividad) {
+        if ((actividad.getImpactos() == null || actividad.getImpactos().isEmpty()) && (actividad.getResponsables() == null || actividad.getResponsables().isEmpty())) {
+            actividadSimpleDAO.delete(actividad);
+        } else {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message = new FacesMessage(bundle.getString("noSePuedeEliminarActividad"));
+            context.addMessage(null, message);
+            return null;
         }
-        return ((totalPesoImpacto / promedio()) * 100);
-    }
-
-    public void delete(ActividadSimple actividad) {
-        actividadSimpleDAO.delete(actividad);
+        return null;
     }
 
     public ActividadSimple getActividad() {
